@@ -1,10 +1,16 @@
 <template name="chat">
   <div class="jumbotron">
-    <h1>CS152aj Chat Extravanza!!</h1>
-    <p>Welcome to the CS152aj Chat room!  Be nice, Be Professional!</p>
+    <h1>Chat Extravanza!!</h1>
+    <p>Welcome to the Chat room!  Be nice, Be Professional!</p>
   </div>
   {{#if currentUser}}
     <input type="text"  class="js-chatinput" >
+    <div class="topnav">
+  <a class="active" href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+  <input type="text" placeholder="Search..">
+</div>
     <br>
     <button class="btn btn-info btn-large js-chatsubmit">Submit</button>
     <hr>
