@@ -1,0 +1,60 @@
+<template name="myprofile">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-md-4">
+        <h1>Name's Profile</h1><br>
+        <p>18,007 points</p>
+      </div>
+      <div class="col-md-2 col-md-offset-6">
+        <br>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Followers</th><th>Following</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>237</td><td>187</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-1 bg-info">
+      <p>
+        <h2>Picture of Me:</h2>
+        <br><img src="" width="100%" alt="Picture of Name">
+      </p>
+    </div>
+    <div class="col-md-4 col-md-offset-2 bg-warning">
+      <p>
+      <h2>Biography:</h2><br>
+        Birthday:
+        <br>Interests:
+        <br><textarea readonly rows="5" cols="30" style="resize:none">my interests</textarea>
+      </p>
+    </div>
+  </div>
+  <br><br>
+  <div class="jumbotron">
+    <h2>My Activity:</h2>
+    <hr>
+    <div class="row">
+      <div class="col-md-2 col-md-offset-1">
+        <input type="radio" name="activity" checked="checked">Chats
+      </div>
+      <div class="col-md-2 col-md-offset-1">
+        <input type="radio" name="activity">Posts
+      </div>
+      <div class="col-md-2 col-md-offset-1">
+        <input type="radio" name="activity">Pictures
+      </div>
+      <div class="col-md-2 col-md-offset-1">
+        <input type="radio" name="activity">Polls
+      </div>
+    </div>
+  </div>
+</template>
