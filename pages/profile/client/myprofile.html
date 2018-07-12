@@ -1,9 +1,10 @@
-<template name="myprofile">
+<template name="profile">
   <div class="jumbotron">
     <div class="row">
       <div class="col-md-4">
         <h1>Name's Profile</h1><br>
         <p>18,007 points</p>
+        <!-- If this is current user's profile, have edit button appear -->
       </div>
       <div class="col-md-2 col-md-offset-6">
         <br>
@@ -33,30 +34,36 @@
       <p>
       <h2>Biography:</h2><br>
         Birthday:
+        <textarea class="form-control" readonly rows="1" style="resize:none">my birthday</textarea>
         <br>Interests:
-        <br><textarea readonly rows="5" cols="30" style="resize:none">my interests</textarea>
+        <textarea class="form-control" readonly rows="10" style="resize:none">my interests</textarea>
+        <br>
       </p>
     </div>
   </div>
   <br><br>
   <div class="jumbotron">
-    <h2>Recent Activity:</h2>
-    <hr>
-    <div class="row">
-      <div class="col-md-2 col-md-offset-1">
-        <input type="radio" name="activity" checked="checked">Chats
+    <fieldset class="form-group">
+      <legend>Recent Activity</legend>
+      <div class="row">
+        <div class="col-md-2 col-md-offset-1">
+          <input type="radio" name="activity" checked>Chats
+        </div>
+        <div class="col-md-2 col-md-offset-1">
+          <input type="radio" name="activity">Posts
+        </div>
+        <div class="col-md-2 col-md-offset-1">
+          <input type="radio" name="activity">Pictures
+        </div>
+        <div class="col-md-2 col-md-offset-1">
+          <input type="radio" name="activity">Polls
+        </div>
       </div>
-      <div class="col-md-2 col-md-offset-1">
-        <input type="radio" name="activity">Posts
-      </div>
-      <div class="col-md-2 col-md-offset-1">
-        <input type="radio" name="activity">Pictures
-      </div>
-      <div class="col-md-2 col-md-offset-1">
-        <input type="radio" name="activity">Polls
-      </div>
-    </div>
+    </fieldset>
   </div>
+  <!-- If radio selected a certain one then set the head to the selected item and then update the displayed table items
+  as being text, links, or images.
+  -->
   <div class="col-md-8 col-md-offset-2">
     <table class="table">
       <thead>
@@ -83,4 +90,36 @@
       </tbody>
     </table>
   </div>
+</template>
+
+<template name="editprofile">
+  <form>
+    <fieldset class="form-group">
+      <legend>Required Info</legend>
+      <div class="form-group">
+        Name: <input type="text" class="form-control" id="name-js" placeholder="Enter name">
+      </div>
+      <div class="form-group">
+        Email: <input type="email" class="form-control" id="email-js" placeholder="Enter email">
+      </div>
+      <div class="form-group">
+        Password: <input type="password" class="form-control" id="password-js" placeholder="Password">
+      </div>
+    </fieldset>
+    <fieldset class="form-group">
+      <legend>Optional Info</legend>
+      <div class="form-group">
+        Date of Birth: <input type="date" class="form-control" id="dob-js">
+      </div>
+      <div class="form-group">
+        Biography: <br>
+        <textarea class="form-control" id="exampleTextarea" rows="10" style="resize:none"></textarea>
+      </div>
+      <div class="form-group">
+        Choose a Profile Picture: <br>
+        <input type="file" class="form-control-file" id="exampleInputFile">
+      </div>
+    </fieldset>
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>
 </template>
