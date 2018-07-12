@@ -3,23 +3,7 @@
     <h1>Create Your Own Posts!!</h1>
     <p>Choose from creating posts, polls, and even your very own chat room!</p>
   </div>
-<<<<<<< HEAD
-  {{#if currentUser}}
-  <div class="topnav">
-      <a class="active" href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-      <input type="text" placeholder="Search..">
-  </div>
 
-    <hr>
-    <table>
-      <tr>
-        <td>Name of chat room: </td>
-        <input name= "text">
-      </tr>
-    </table>
-=======
   <fieldset class="form-group">
     <legend>Start your own chat room!</legend>
         Name your chat room:
@@ -43,7 +27,6 @@
         <button class="btn btn-info btn-large" id="roomsubmit-js">Create Room</button>
     </fieldset>
     <br>
->>>>>>> 384e77fa4694f44e40c42a8315fed802847a07ed
 
     <fieldset class="form-group">
       <legend>Create your own post!</legend>
@@ -68,33 +51,9 @@
           <button class="btn btn-info btn-large" id="postsubmit-js">Create Post</button>
     </fieldset>
     <br>
-<<<<<<< HEAD
     <button class="btn btn-info btn-large js-chatsubmit">Submit</button>
     <hr>
-    <h2>Last Five Chats:</h2>
-    <ul>
-      {{#each chat in chatlines}}
-      <li><b>{{userEmail chat.createdBy}}</b>
-        <select>
-    <option value="Delete">Volvo</option> <button>delete</button>
-    <option value="Edit">Saab</option> <button>delete</button>
-    <option value="Archive">Mercedes</option> <button>delete</button>
-</select>
 
-        / <i>{{chat.createdAt}}</i>
-        <br>
-        {{chat.text}}
-        <hr>
-      </li>
-      {{/each}}
-    </ul>
-    <hr>
-{{else}}
-    <h2>You must log in to see the chats</h2>
-  {{/if}}
-</template>
-=======
->>>>>>> 384e77fa4694f44e40c42a8315fed802847a07ed
 
     <fieldset class="form-group">
       <legend>Create your own poll!</legend>
