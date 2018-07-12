@@ -1,3 +1,5 @@
+var chatpage="chat"
+
 function reqsFilled(name,email,pass) {
   console.log("checking required fields...");
   return (name != "" && email != "" && pass != "");
@@ -26,3 +28,9 @@ Template.editprofile.events({
     }
   }
 })
+
+Template.myprofile.events({
+"click #activity": function() {
+  chatpage = $("input:radio[name='activity']:checked").val()
+  console.log(chatpage)
+}})
