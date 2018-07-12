@@ -7,22 +7,23 @@
     <legend>Start your own chat room!</legend>
         Name your chat room:
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Enter name">
+          <input type="text" class="form-control" id="roomname-js" placeholder="Enter name">
         </div>
         Do you want to add a description?
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Enter description">
+          <input type="text" class="form-control" id="roomdesc-js" placeholder="Enter description">
         </div>
         Invite people:
         <div class="form-group">
           <!-- Add your followers here -->
-          <select class="form-control">
+          <select multiple class="form-control" id="roominvites-js">
             <option>Follower #1</option>
             <option>Follower #2</option>
             <option>Follower #3</option>
           </select>
+          <small class="form-text text-muted">Ctrl+Click to select multiple followers!</small>
         </div>
-        <button class="btn btn-info btn-large">Create Room</button>
+        <button class="btn btn-info btn-large" id="roomsubmit-js">Create Room</button>
     </fieldset>
     <br>
 
@@ -30,22 +31,23 @@
       <legend>Create your own post!</legend>
           Title your post:
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Enter title">
+            <input type="text" class="form-control" id="posttitle-js" placeholder="Enter title">
           </div>
           Description:
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Enter description">
+            <input type="text" class="form-control" id="postdesc-js" placeholder="Enter description">
           </div>
           Invite people:
           <div class="form-group">
             <!-- Add your followers here -->
-            <select class="form-control">
+            <select multiple class="form-control" id="postinvites-js">
               <option>Follower #1</option>
               <option>Follower #2</option>
               <option>Follower #3</option>
             </select>
+            <small class="form-text text-muted">Ctrl+Click to select multiple followers!</small>
           </div>
-          <button class="btn btn-info btn-large">Create Post</button>
+          <button class="btn btn-info btn-large" id="postsubmit-js">Create Post</button>
     </fieldset>
     <br>
 
@@ -53,21 +55,21 @@
       <legend>Create your own poll!</legend>
           Title your poll:
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Enter title">
+            <input type="text" class="form-control" id="polltitle-js" placeholder="Enter title">
           </div>
           Description:
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Enter description">
+            <input type="text" class="form-control" id="polldesc-js" placeholder="Enter description">
           </div>
           What would you like people to vote on?
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Enter topic">
+            <input type="text" class="form-control" id="polltopic-js" placeholder="Enter topic">
           </div>
           How long do you want your poll to be open?
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Enter poll time length">
+            <input type="text" class="form-control" id="polllength-js" placeholder="Enter poll time length">
           </div>
-          <button class="btn btn-info btn-large">Create Poll</button>
+          <button class="btn btn-info btn-large" id="pollsubmit-js">Create Poll</button>
     </fieldset>
 
 
