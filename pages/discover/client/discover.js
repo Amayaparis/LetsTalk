@@ -12,7 +12,6 @@ const ourSponsors = [
  {name:"People Magazine",date:"00/00/0000"},
  {name:"Daily Mail",date:"00/00/0000"}
 ]
-
 Template.discover.helpers({
 	sponsorData: ourSponsors
 })
