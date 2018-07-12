@@ -13,7 +13,7 @@ jparker:gravatar
 ian:accounts-ui-bootstrap-3
 meteor-base@1.0.4
 mobile-experience@1.0.4
-mongo@1.1.17
+mongo@1.1.24
 blaze-html-templates
 session@1.1.7
 jquery@1.11.10
@@ -30,5 +30,6 @@ accounts-google@1.1.2
 underscore@1.0.10
 reactive-dict@1.1.8
 autopublish@1.0.7
-shell-server
-google-config-ui
+shell-server@0.2.3
+google-config-ui@1.0.0
+dynamic-import
