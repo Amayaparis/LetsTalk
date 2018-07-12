@@ -1,4 +1,5 @@
-<template name="profile">
+<template name="myprofile">
+  {{#if currentUser}}
   <div class="jumbotron">
     <div class="row">
       <div class="col-md-4">
@@ -90,12 +91,22 @@
       </tbody>
     </table>
   </div>
+  {{else}}
+  <div class="alert alert-warning" role="alert">
+    <strong>Sorry! </strong> You must be logged in to view your profile!
+  </div>
+  {{/if}}
 </template>
 
 <template name="editprofile">
   <form>
     <fieldset class="form-group">
       <legend>Required Info</legend>
+      {{#if displayErrorState}}
+      <div class="alert alert-danger" role="alert">
+        <strong>Error!</strong> The required fields have not been filled.
+      </div>
+      {{/if}}
       <div class="form-group">
         Name: <input type="text" class="form-control" id="name-js" placeholder="Enter name">
       </div>
@@ -113,13 +124,13 @@
       </div>
       <div class="form-group">
         Biography: <br>
-        <textarea class="form-control" id="exampleTextarea" rows="10" style="resize:none"></textarea>
+        <textarea class="form-control" id="bio-js" rows="10" style="resize:none"></textarea>
       </div>
       <div class="form-group">
         Choose a Profile Picture: <br>
-        <input type="file" class="form-control-file" id="exampleInputFile">
+        <input type="file" class="form-control-file" id="imgSelect-js">
       </div>
     </fieldset>
-    <button type="submit" class="btn btn-primary">Update</button>
+    <button class="btn btn-primary" id="updateprof-js">Update</button>
   </form>
 </template>
