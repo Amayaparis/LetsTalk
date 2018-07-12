@@ -1,9 +1,10 @@
 const team =
   [
-    {name:"Tim Hickey"    , email: "tjhickey@brandeis.edu" },
-    {name:"Jordan Phillips", email:"jordan.m.phillips23@gmail.com"},
-    {name:"Zeline Bartolome", email:"ztbartolome@brandeis.edu"},
-    {name:"Dongwei Wu", email:"??"}
+    {name:"Arianna Perry", email:"perry.arianna83@gmail.com"},
+    {name:"Angie Martinez", email:"angie.martinez@students.excelacaedemy.org"},
+    {name:"Amaya Mayhew", email:"amayarosemayhew@gmail.com"},
+    {name:"Chami Lamelas", email:"chami.lamelas@gmail.com"},
+    {name:"Willow Chau", email:"willowachau@gmail.com"}
   ];
 
 Template.about.helpers(

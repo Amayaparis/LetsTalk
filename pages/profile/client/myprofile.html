@@ -1,0 +1,125 @@
+<template name="profile">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-md-4">
+        <h1>Name's Profile</h1><br>
+        <p>18,007 points</p>
+        <!-- If this is current user's profile, have edit button appear -->
+      </div>
+      <div class="col-md-2 col-md-offset-6">
+        <br>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Followers</th><th>Following</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>237</td><td>187</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-1 bg-info">
+      <p>
+        <h2>Picture of Me:</h2>
+        <br><img src="" width="100%" alt="Picture of Name">
+      </p>
+    </div>
+    <div class="col-md-4 col-md-offset-2 bg-warning">
+      <p>
+      <h2>Biography:</h2><br>
+        Birthday:
+        <textarea class="form-control" readonly rows="1" style="resize:none">my birthday</textarea>
+        <br>Interests:
+        <textarea class="form-control" readonly rows="10" style="resize:none">my interests</textarea>
+        <br>
+      </p>
+    </div>
+  </div>
+  <br><br>
+  <div class="jumbotron">
+    <fieldset class="form-group">
+      <legend>Recent Activity</legend>
+      <div class="row">
+        <div class="col-md-2 col-md-offset-1">
+          <input type="radio" name="activity" checked> Chats
+        </div>
+        <div class="col-md-2 col-md-offset-1">
+          <input type="radio" name="activity"> Posts
+        </div>
+        <div class="col-md-2 col-md-offset-1">
+          <input type="radio" name="activity"> Pictures
+        </div>
+        <div class="col-md-2 col-md-offset-1">
+          <input type="radio" name="activity"> Polls
+        </div>
+      </div>
+    </fieldset>
+  </div>
+  <!-- If radio selected a certain one then set the head to the selected item and then update the displayed table items
+  as being text, links, or images.
+  -->
+  <div class="col-md-8 col-md-offset-2">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Currently Selected Activity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Selected#1</td>
+        </tr>
+        <tr>
+          <td>Selected#2</td>
+        </tr>
+        <tr>
+          <td>Selected#3</td>
+        </tr>
+        <tr>
+          <td>Selected#4</td>
+        </tr>
+        <tr>
+          <td>Selected#5</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<template name="editprofile">
+  <form>
+    <fieldset class="form-group">
+      <legend>Required Info</legend>
+      <div class="form-group">
+        Name: <input type="text" class="form-control" id="name-js" placeholder="Enter name">
+      </div>
+      <div class="form-group">
+        Email: <input type="email" class="form-control" id="email-js" placeholder="Enter email">
+      </div>
+      <div class="form-group">
+        Password: <input type="password" class="form-control" id="password-js" placeholder="Password">
+      </div>
+    </fieldset>
+    <fieldset class="form-group">
+      <legend>Optional Info</legend>
+      <div class="form-group">
+        Date of Birth: <input type="date" class="form-control" id="dob-js">
+      </div>
+      <div class="form-group">
+        Biography: <br>
+        <textarea class="form-control" id="exampleTextarea" rows="10" style="resize:none"></textarea>
+      </div>
+      <div class="form-group">
+        Choose a Profile Picture: <br>
+        <input type="file" class="form-control-file" id="exampleInputFile">
+      </div>
+    </fieldset>
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>
+</template>
