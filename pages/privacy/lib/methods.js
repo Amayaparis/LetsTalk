@@ -4,5 +4,5 @@ Meteor.methods({
     console.log("removed everything!");
   },
 
-  
+
 })
