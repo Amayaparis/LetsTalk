@@ -14,7 +14,7 @@
       <div class="col-md-4">
         <h1><input class="form-group" id="name-js" value="{{me.name}}" size="8"></h1><br>
         <button class="btn btn-primary" id="update-js">Update</button> <button class="btn btn-danger" id="reset-js">Reset</button><br>
-        <p>{{me.points}}</p>
+        <p>Points: {{me.points}}</p>
         <!-- If this is current user's profile, have edit button appear -->
       </div>
       <div class="col-md-2 col-md-offset-5">
@@ -50,10 +50,10 @@
       <h2>Biography:</h2><br>
         Birthday:
         <div class="form-group">
-          Date of Birth: <input type="date" class="form-control" id="dob-js">
+          Date of Birth: <input type="date" class="form-control" id="dob-js" value={{me.dob}}>
         </div>
         <br>Interests:
-        <textarea class="form-control" rows="10" id="bio-js" style="resize:none">my interests</textarea>
+        <textarea class="form-control" rows="10" id="bio-js" style="resize:none">{{me.bio}}</textarea>
         <br>
       </p>
     </div>
@@ -62,20 +62,14 @@
   <div class="jumbotron">
     <fieldset class="form-group">
       <legend>Recent Activity</legend>
-      <div class="row">
-        <div class="col-md-2 col-md-offset-1">
-          <input type="radio" name="activity" id="chats-js" checked> Chats
-        </div>
-        <div class="col-md-2 col-md-offset-1">
-          <input type="radio" name="activity" id="posts-js"> Posts
-        </div>
-        <div class="col-md-2 col-md-offset-1">
-          <input type="radio" name="activity" id="pics-js"> Pictures
-        </div>
-        <div class="col-md-2 col-md-offset-1">
-          <input type="radio" name="activity" id="polls-js"> Polls
-        </div>
-      </div>
+      <table class="table">
+        <tbody>
+          <td><input type="radio" name="activity" id="chats-js" checked> Chats</td>
+          <td><input type="radio" name="activity" id="posts-js"> Posts</td>
+          <td><input type="radio" name="activity" id="pics-js"> Pictures</td>
+          <td><input type="radio" name="activity" id="polls-js"> Polls</td>
+        </tbody>
+      </table>
     </fieldset>
   </div>
   <!-- If radio selected a certain one then set the head to the selected item and then update the displayed table items
@@ -85,7 +79,7 @@
     <table class="table">
       <thead>
         <tr>
-          <th >Recent {{getClickedRecent}}</th>
+          <th>Recent {{getClickedRecent}}</th>
         </tr>
       </thead>
       <tbody>

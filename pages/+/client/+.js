@@ -28,30 +28,25 @@ Template.chat.events({
     Router.go('home')
   },
 
-})
+    "click #roomsubmit-js": function(event){
+      event.preventDefault();
+      console.log("the button was clicked")
+      const thename = $("#roomname-js").val();
+      const theDesc = $("#roomdesc-js").val();
+      const theDesc = $("#roominvite-js").val();
+      const ChatRoom=
+      {title:theTitle,
+       desc:theDesc,
+       invites:theinvites
+       createdAt:new Date(),
+       owner:Meteor.userId()
+     };
+     Chats.insert(owner:Meteor.userId(),ChatRoom);
+     console.log(`just created ${JSON.stringify(ChatRoom)}`)
+      Posts.insert(ChatRoom);
+      Router.go('Profile')
+},
 
-Template.chat.events({
-  "click #postchat-js": function(event){
-    event.preventDefault();
-    console.log("the button was clicked")
-    const theName = $("#roomname-js").val();
-    const theDesc = $("#roomdesc-js").val();
-    const theInvites = $("#roominvites-js").val();  // read the user's chat text ...
-    const post=
-    {name:theName,
-     desc:theDesc,
-     invites:theInvites,
-     createdAt:new Date(),
-     createdBy:Meteor.userId()
-   };
-   console.log(`just created ${JSON.stringify(chat)}`)
-    Posts.insert(chat);
-    Router.go('home')
-  },
-
-})
-
-Template.chat.events({
     "click #pollsubmit-js": function(event){
       event.preventDefault();
       console.log("the button was clicked")
@@ -70,5 +65,5 @@ Template.chat.events({
      console.log(`just created ${JSON.stringify(poll)}`)
       Poll.insert(poll);
       Router.go('home')
-    },
-})
+    }
+)};
