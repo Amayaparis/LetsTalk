@@ -1,11 +1,11 @@
-var clickedRecent = "Chats"
+Session.set("recentClicked","Chats");
 
 function makeDefaultProfile() {
     var k = Profiles.find().count();
     while (Profiles.findOne({name:"Anonymous"+k})) {
       k++;
     }
-    return {name:"Anonymous"+k,dob:"",bio:"",followers:[],following:[],points:0};
+    return {name:"Anonymous"+k,dob:"",bio:"",followers:[],following:[],points:0,owner:Meteor.userId()};
 }
 
 Template.profilepage.helpers({
@@ -13,8 +13,10 @@ Template.profilepage.helpers({
     var theProfile = Profiles.findOne({owner:Meteor.userId()});
     if (!theProfile) {
       Profiles.insert(makeDefaultProfile());
+      console.log("empty ran correctly");
     }
     else {
+      console.log("found a matching profile");
       return theProfile;
     }
    }
@@ -41,58 +43,63 @@ Template.myprofile.events({
   "click #reset-js"(event,instance) {
     document.location.reload();
   },
-  "change #chats-js"(event) {
-    console.log("HELLo");
-    clickedRecent = "Chats";
-    console.log(clickedRecent);
+  "change #chats-js"(event,instance) {
+    Session.set("recentClicked","Chats");
+    console.log("updated recent to="+Session.get("recentClicked"));
   },
   "change #posts-js"(event,instance) {
-    clickedRecent = "Posts";
-    console.log(clickedRecent);
-  },
-  "change #pics-js"(event,instance) {
-    clickedRecent = "Pictures";
-    console.log(clickedRecent);
+    Session.set("recentClicked","Posts");
+    console.log("updated recent to="+Session.get("recentClicked"));
   },
   "change #polls-js"(event,instance) {
-    clickedRecent = "Polls";
-    console.log(clickedRecent);
+    Session.set("recentClicked","Polls");
+    console.log("updated recent to="+Session.get("recentClicked"));
+  },
+  "change #pics-js"(event,instance) {
+    Session.set("recentClicked","Pictures");
+    console.log("updated recent to="+Session.get("recentClicked"));
+  },
+  "change"(event,instance) {
+    console.log("detected change..");
+    instance.$("#recentlbl-js").val(Session.get("recentClicked"));
+    console.log("updated recent..");
   }
 })
 
 Template.myprofile.helpers({
   getClickedRecent() {
-    return clickedRecent;
+    console.log("recent="+Session.get("recentClicked"));
+    return Session.get("recentClicked");
   },
   getRecentCollection() {
     var recents = [];
-    if (clickedRecent == "Chats") {
-      for  each (chat in Chats) {
+    if (Session.get("recentClicked") == "Chats") {
+      Chats.find().forEach((chat) => {
         if (chat.owner==Meteor.userId()) {
           recents.push(chat);
         }
-      }
+      });
     }
-    else if (clickedRecent == "Posts") {
-      for each (post in Posts) {
+    else if (Session.get("recentClicked") == "Posts") {
+      Posts.find().forEach((post) => {
         if (post.owner==Meteor.userId()) {
           recents.push(post);
         }
-      }
+      });
     }
-    else if (clickedRecent == "Pictures") {
-      for each (pic in Pictures) {
+    else if (Session.get("recentClicked") == "Pictures") {
+      Pictures.find().forEach((pic) => {
         if (pic.owner==Meteor.userId()) {
           recents.push(pic);
         }
-      }
+      });
     }
-    else if (clickedRecent == "Polls") {
-      for each (poll in Polls) {
+    else if (Session.get("recentClicked") == "Polls") {
+      Polls.find().forEach((poll) => {
         if (polls.owner==Meteor.userId()) {
           recents.push(poll);
         }
-      }
+      });
     }
     return recents;
   }
