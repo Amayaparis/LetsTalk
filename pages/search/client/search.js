@@ -19,7 +19,14 @@ const trendingObject =
     {topic:"Kpop girl group TWICE Names Who Would Be Best At Acting And Who Buys Members Food The Least",image:"https://0.soompi.io/wp-content/uploads/2018/07/13074147/twice6.jpg"},
     {topic:"Kpop idol Jessi says how kpop group bts are more genuine friends unlike other people in the industry.", image:"https://www.allkpop.com/upload/2018/07/af_org/11171842/bts-jessica-ho.jpg"},
     {topic:"Kpop group BTS is one of the biggest worldwide so far.", image:"https://www.dramafever.com/st/news/images/1275656d-bff7-4809-8792-8af2af6ddcd0.jpg"},
-  
+    {topic:"Tiny plastic found in fish eaten by humans.",image:"https://static.independent.co.uk/s3fs-public/thumbnails/image/2017/05/16/01/henderson-island.jpg?w968h681"},
+    {topic:"Food that is processed is more likely to contain harmful plastic.",image:"https://ppicdn.azureedge.net/publicsite/media/2415/Roechling-Industrial-Food-Processing-Meat-Hydroma-Cutting-board-web.jpg"},
+    {topic:"Trump shamelessly asks Russia to find Clinton's emails.",image:"https://cdn.cnn.com/cnnnext/dam/assets/180710215059-trump-file-07-10-exlarge-169.jpg"},
+    {topic:"Milennials use Trump images as memes.",image:"https://data1.ibtimes.co.in/cache-img-0-450/en/full/625849/1478675099_donald-trump.jpg"},
+    {topic:"Ridiculous beauty trends appearing.",image:"https://ugc.reveliststatic.com/gen/constrain/640/640/80/2018/03/14/10/5n/9l/phy41nxjgo2qbwe.jpg"},
+    {topic:"Beauty standards and why they don't make sense.",image:"https://hips.hearstapps.com/elleuk.cdnds.net/17/48/2560x1280/landscape-1511865836-gettyimages-844361804.jpg?resize=768:*"},
+    {topic:"",image:""},
+    {topic:"",image:""},
   ]
 
   Template.search.helpers(
