@@ -62,6 +62,6 @@ Template.chat.events({
      };
      console.log(`just created ${JSON.stringify(poll)}`)
       Poll.insert(poll);
-      Router.go('home')
+      Router.go('profilepage')
     }
 });
