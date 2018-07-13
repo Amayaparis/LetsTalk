@@ -1,26 +1,16 @@
 Session.set("recentClicked","Chats");
 
-function makeDefaultProfile() {
-    var k = Profiles.find().count();
-    while (Profiles.findOne({name:"Anonymous"+k})) {
-      k++;
-    }
-    return {name:"Anonymous"+k,dob:"",bio:"",followers:[],following:[],points:0,owner:Meteor.userId()};
-}
-
-function removeAllProfiles() {
-  console.log("removing all profiles..");
-  Profiles.find().forEach((profile) => {
-    Profiles.remove(profile._id);
-  });
-  console.log("done");
-}
-
 Template.profilepage.helpers({
   getProfile(){
     var theProfile = Profiles.findOne({owner:Meteor.userId()});
     if (!theProfile) {
-      Profiles.insert(makeDefaultProfile());
+      theProfile = {name:"",dob:"",bio:"",followers:[],following:[],points:0,owner:Meteor.userId()};
+      var k = Profiles.find().count();
+      while (Profiles.findOne({name:"Anonymous"+k})) {
+        k++;
+      }
+      theProfile.name = "Anonymous"+k;
+      Profiles.insert(theProfile);
       console.log("empty ran correctly");
     }
     else {
@@ -39,12 +29,16 @@ Template.myprofile.events({
     const bio = instance.$('#bio-js').val();
     console.log('read bio='+bio);
     if (name == "") {
-      alert("Some of the fields have not been completed!");
+      alert("Please enter a name!");
     }
     else {
+      let prof = Profiles.findOne(this.me._id);
       this.me.name = name;
       this.me.dob = dob;
       this.me.bio = bio;
+      this.me.followers = prof.followers;
+      this.me.following = prof.following;
+      this.me.points = prof.points;
       Profiles.update(this.me._id,this.me);
     }
   },
@@ -66,11 +60,6 @@ Template.myprofile.events({
   "change #pics-js"(event,instance) {
     Session.set("recentClicked","Pictures");
     console.log("updated recent to="+Session.get("recentClicked"));
-  },
-  "change"(event,instance) {
-    console.log("detected change..");
-    instance.$("#recentlbl-js").val(Session.get("recentClicked"));
-    console.log("updated recent..");
   }
 })
 
@@ -78,6 +67,18 @@ Template.myprofile.helpers({
   getClickedRecent() {
     console.log("recent="+Session.get("recentClicked"));
     return Session.get("recentClicked");
+  },
+  isChatsClicked() {
+    return Session.get("recentClicked") == "Chats";
+  },
+  isPostsClicked() {
+    return Session.get("recentClicked")  == "Posts";
+  },
+  isPicsClicked() {
+    return Session.get("recentClicked")  == "Pictures";
+  },
+  isPollsClicked() {
+    return Session.get("recentClicked")  == "Polls";
   },
   getRecentCollection() {
     var recents = [];
@@ -90,21 +91,21 @@ Template.myprofile.helpers({
     }
     else if (Session.get("recentClicked") == "Posts") {
       Posts.find().forEach((post) => {
-        if (post.owner==Meteor.userId()) {
+        if (post.createdBy==Meteor.userId()) {
           recents.push(post);
         }
       });
     }
     else if (Session.get("recentClicked") == "Pictures") {
       Pictures.find().forEach((pic) => {
-        if (pic.owner==Meteor.userId()) {
+        if (pic.createdBy==Meteor.userId()) {
           recents.push(pic);
         }
       });
     }
     else if (Session.get("recentClicked") == "Polls") {
       Polls.find().forEach((poll) => {
-        if (polls.owner==Meteor.userId()) {
+        if (poll.createdBy==Meteor.userId()) {
           recents.push(poll);
         }
       });

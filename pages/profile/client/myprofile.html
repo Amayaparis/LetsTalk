@@ -64,10 +64,26 @@
       <legend>Recent Activity</legend>
       <table class="table">
         <tbody>
-          <td><input type="radio" name="activity" id="chats-js" checked> Chats</td>
-          <td><input type="radio" name="activity" id="posts-js"> Posts</td>
-          <td><input type="radio" name="activity" id="pics-js"> Pictures</td>
-          <td><input type="radio" name="activity" id="polls-js"> Polls</td>
+          {{#if isChatsClicked}}
+            <td><input type="radio" name="activity" id="chats-js" checked> Chats</td>
+          {{else}}
+            <td><input type="radio" name="activity" id="chats-js"> Chats</td>
+          {{/if}}
+          {{#if isPostsClicked}}
+            <td><input type="radio" name="activity" id="posts-js" checked> Posts</td>
+          {{else}}
+            <td><input type="radio" name="activity" id="posts-js"> Posts</td>
+          {{/if}}
+          {{#if isPicsClicked}}
+            <td><input type="radio" name="activity" id="pics-js" checked> Pictures</td>
+          {{else}}
+            <td><input type="radio" name="activity" id="pics-js"> Pictures</td>
+          {{/if}}
+          {{#if isPollsClicked}}
+            <td><input type="radio" name="activity" id="polls-js" checked> Polls</td>
+          {{else}}
+            <td><input type="radio" name="activity" id="polls-js"> Polls</td>
+          {{/if}}
         </tbody>
       </table>
     </fieldset>

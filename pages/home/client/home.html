@@ -23,9 +23,11 @@
     <div class="col-md-5">
        <img src="{{post.url}}" width="100%">
     </div>
+		{{#if canDelete}}
     <div class="col-md-1">
        <button class="delete">Delete</button>
     </div>
+		{{/if}}
 
 
   </div>

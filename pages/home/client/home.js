@@ -5,6 +5,13 @@ Template.home.helpers({
 
 })
 
+Template.showpost.helpers({
+  canDelete() {
+    console.log(this.post.createdBy);
+    return Meteor.userId() == this.post.createdBy;
+  }
+})
+
 Template.showpost.events({
   "click .delete"(event,instance){
     console.dir(this)
