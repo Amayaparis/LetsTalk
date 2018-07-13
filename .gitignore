@@ -3,3 +3,4 @@
 movies/*
 *.txt
 node_modules
+pages/about/client/about.js
