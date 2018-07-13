@@ -27,25 +27,23 @@ Template.chat.events({
     Posts.insert(post);
     Router.go('home')
   },
-
-    "click #roomsubmit-js": function(event){
+    "click #roomsubmit-js"(event,instance){
       event.preventDefault();
       console.log("the button was clicked")
-      const thename = $("#roomname-js").val();
+      const theTitle = $("#roomname-js").val();
       const theDesc = $("#roomdesc-js").val();
-      const theDesc = $("#roominvite-js").val();
+      const theInvite = $("#roominvite-js").val();
       const ChatRoom=
       {title:theTitle,
        desc:theDesc,
-       invites:theinvites
+       invites:theInvite,
        createdAt:new Date(),
-       owner:Meteor.userId()
+       createdBy:Meteor.userId()
      };
-     Chats.insert(owner:Meteor.userId(),ChatRoom);
+     Chats.insert(ChatRoom);
      console.log(`just created ${JSON.stringify(ChatRoom)}`)
-      Posts.insert(ChatRoom);
-      Router.go('Profile')
-},
+      Router.go('profilepage')
+    },
 
     "click #pollsubmit-js": function(event){
       event.preventDefault();
@@ -66,4 +64,4 @@ Template.chat.events({
       Poll.insert(poll);
       Router.go('home')
     }
-)};
+});
