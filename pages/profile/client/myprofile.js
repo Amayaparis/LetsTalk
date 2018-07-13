@@ -8,6 +8,14 @@ function makeDefaultProfile() {
     return {name:"Anonymous"+k,dob:"",bio:"",followers:[],following:[],points:0,owner:Meteor.userId()};
 }
 
+function removeAllProfiles() {
+  console.log("removing all profiles..");
+  Profiles.find().forEach((profile) => {
+    Profiles.remove(profile._id);
+  });
+  console.log("done");
+}
+
 Template.profilepage.helpers({
   getProfile(){
     var theProfile = Profiles.findOne({owner:Meteor.userId()});
