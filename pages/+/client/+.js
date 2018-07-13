@@ -29,6 +29,28 @@ Template.chat.events({
   },
 
 })
+
+Template.chat.events({
+  "click #postchat-js": function(event){
+    event.preventDefault();
+    console.log("the button was clicked")
+    const theName = $("#roomname-js").val();
+    const theDesc = $("#roomdesc-js").val();
+    const theInvites = $("#roominvites-js").val();  // read the user's chat text ...
+    const post=
+    {name:theName,
+     desc:theDesc,
+     invites:theInvites,
+     createdAt:new Date(),
+     createdBy:Meteor.userId()
+   };
+   console.log(`just created ${JSON.stringify(chat)}`)
+    Posts.insert(chat);
+    Router.go('home')
+  },
+
+})
+
 Template.chat.events({
     "click #pollsubmit-js": function(event){
       event.preventDefault();
