@@ -12,15 +12,16 @@
   	</thead>
   	<tbody>
   		{{#each topic in trending}}
-    		{{> trending t=topic}}
+    		{{> trendingitems t=topic}}
   		{{/each}}
   	</tbody>
   </table>
 </template>
 
-<template name="trending">
+<template name="trendingitems">
    <tr>
    	  <td>{{t.topic}}</td>
+      <td><img src="{{t.image}}"></td>
 
    </tr>
 </template>
