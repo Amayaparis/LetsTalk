@@ -38,7 +38,7 @@ Template.chat.events({
     const theTitle = $("#roomname-js").val();
     const theDesc = $("#roomdesc-js").val();
     const theInvites = $("#roominvites-js").val();  // read the user's chat text ...
-    const post=
+    const ChatRoom=
     {title:theTitle,
      desc:theDesc,
      invite:theInvites,
