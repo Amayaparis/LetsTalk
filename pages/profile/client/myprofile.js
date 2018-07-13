@@ -97,9 +97,9 @@ Template.myprofile.helpers({
       });
     }
     else if (Session.get("recentClicked") == "Pictures") {
-      Pictures.find().forEach((pic) => {
-        if (pic.createdBy==Meteor.userId()) {
-          recents.push(pic);
+      Posts.find().forEach((post) => {
+        if (post.createdBy==Meteor.userId()) {
+          recents.push(post.url);
         }
       });
     }

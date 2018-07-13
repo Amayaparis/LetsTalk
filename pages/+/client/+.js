@@ -1,3 +1,7 @@
+const NEW_CHAT_POINTS = 5;
+const NEW_POST_POINTS = 1;
+const NEW_POLL_POINTS = 3;
+
 Template.chat.helpers({
   chatlines: function(){
     // return the last five chats
@@ -30,10 +34,8 @@ Template.chat.events({
      console.log(`just created ${JSON.stringify(post)}`);
       Posts.insert(post);
       let prof = Profiles.findOne({owner:Meteor.userId()});
-      console.log(`profile ${JSON.stringify(prof)}`)
-      Profiles.update(prof._id,{name:prof.name,dob:prof.dob,bio:prof.bio,followers:prof.followers,following:prof.following,points:prof.points+1});
-      let prof2 = Profiles.findOne({owner:Meteor.userId()});
-      console.log(`profile ${JSON.stringify(prof2)}`)
+      prof.points += NEW_POST_POINTS;
+      Profiles.update(prof._id,prof);
       Router.go('home');
     }
   },
@@ -56,6 +58,9 @@ Template.chat.events({
        };
        Chats.insert(ChatRoom);
        console.log(`just created ${JSON.stringify(ChatRoom)}`)
+       let prof = Profiles.findOne({owner:Meteor.userId()});
+       prof.points += NEW_CHAT_POINTS;
+       Profiles.update(prof._id,prof);
         Router.go('profilepage')
       }
     },
@@ -81,6 +86,9 @@ Template.chat.events({
        };
        Polls.insert(poll);
        console.log(`just created ${JSON.stringify(poll)}`)
+       let prof = Profiles.findOne({owner:Meteor.userId()});
+       prof.points += NEW_POLL_POINTS;
+       Profiles.update(prof._id,prof);
         Router.go('profilepage')
       }
     }

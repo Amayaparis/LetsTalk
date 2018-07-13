@@ -99,11 +99,19 @@
         </tr>
       </thead>
       <tbody>
-        {{#each recent in getRecentCollection}}
-          <tr>
-            <td>{{recent.title}}</td>
-          </tr>
-        {{/each}}
+        {{#if isPicsClicked}}
+          {{#each url in getRecentCollection}}
+            <tr>
+              <img src="{{url}}" alt="{{url}}" width="40%">
+            </tr>
+          {{/each}}
+        {{else}}
+          {{#each recent in getRecentCollection}}
+            <tr>
+              <td>{{recent.title}}</td>
+            </tr>
+          {{/each}}
+        {{/if}}
       </tbody>
     </table>
   </div>
