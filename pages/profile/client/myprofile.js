@@ -83,7 +83,7 @@ Template.myprofile.helpers({
     var recents = [];
     if (Session.get("recentClicked") == "Chats") {
       Chats.find().forEach((chat) => {
-        if (chat.owner==Meteor.userId()) {
+        if (chat.createdBy==Meteor.userId()) {
           recents.push(chat);
         }
       });
