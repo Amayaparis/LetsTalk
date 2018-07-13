@@ -48,4 +48,26 @@ Template.chat.events({
    console.log(`just created ${JSON.stringify(ChatRoom)}`)
     Chat.insert(ChatRoom);
     Router.go('profiles')
-  },
+  }}),
+
+  Template.chat.events({
+    "click #postsubmit-js": function(event){
+      event.preventDefault();
+      console.log("the button was clicked")
+      const theTitle = $("#polltitle-js").val();
+      const theDesc = $("#polldesc-js").val();
+      const theTopic = $("#polltopic-js").val();
+      const theLength = $("#polllength-js").val();
+      const poll=
+      {title:theTitle,
+       desc:theDesc,
+       topic:theTopic,
+       length:theLength,
+       createdAt:new Date(),
+       createdBy:Meteor.userId()
+     };
+     console.log(`just created ${JSON.stringify(post)}`)
+      Poll.insert(poll);
+      Router.go('home')
+
+}})
