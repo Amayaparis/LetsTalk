@@ -41,17 +41,22 @@ Template.myprofile.events({
   "click #reset-js"(event,instance) {
     document.location.reload();
   },
-  "change #chats-js"(event,instance) {
+  "change #chats-js"(event) {
+    console.log("HELLo");
     clickedRecent = "Chats";
+    console.log(clickedRecent);
   },
   "change #posts-js"(event,instance) {
     clickedRecent = "Posts";
+    console.log(clickedRecent);
   },
   "change #pics-js"(event,instance) {
-    clickedRecent = "Pictures"
+    clickedRecent = "Pictures";
+    console.log(clickedRecent);
   },
   "change #polls-js"(event,instance) {
     clickedRecent = "Polls";
+    console.log(clickedRecent);
   }
 })
 
@@ -60,13 +65,35 @@ Template.myprofile.helpers({
     return clickedRecent;
   },
   getRecentCollection() {
-    if (clickedRecent == "Chats")
-      return Chats;
-    else if (clickedRecent == "Posts")
-      return Posts;
-    else if (clickedRecent == "Pictures")
-      return Pictures;
-    else if (clickedRecent == "Polls")
-      return Polls;
+    var recents = [];
+    if (clickedRecent == "Chats") {
+      for  each (chat in Chats) {
+        if (chat.owner==Meteor.userId()) {
+          recents.push(chat);
+        }
+      }
+    }
+    else if (clickedRecent == "Posts") {
+      for each (post in Posts) {
+        if (post.owner==Meteor.userId()) {
+          recents.push(post);
+        }
+      }
+    }
+    else if (clickedRecent == "Pictures") {
+      for each (pic in Pictures) {
+        if (pic.owner==Meteor.userId()) {
+          recents.push(pic);
+        }
+      }
+    }
+    else if (clickedRecent == "Polls") {
+      for each (poll in Polls) {
+        if (polls.owner==Meteor.userId()) {
+          recents.push(poll);
+        }
+      }
+    }
+    return recents;
   }
 })
