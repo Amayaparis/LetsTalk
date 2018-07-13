@@ -14,6 +14,8 @@ const trendingObject =
     {topic:"Environmental waste, Single plastic use",image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOGeYHZuWEoQGh0M4TkBFszzatuDqMTBCfoizSWHK-mfyBXjS-"},
     {topic:"Police Brutality effects the nation",image:"http://cocosouthla.org/wp-content/uploads/2016/09/Dennis-Story.jpg"},
     {topic:"Are you heard on other social media apps?",images:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfTi1daBIasQDx5PD5j1kH9f3yL9U4a_hAh9btwfOQGrgVnjUu"},
+    {topic:"How Plastic surgery effect society",image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZqCBI-9xQ029OkarBM2bWEia0XLJEmYefgsV3yiw4WZ9meeYybg"},
+
   ]
 
   Template.search.helpers(
