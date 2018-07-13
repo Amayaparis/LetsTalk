@@ -5,7 +5,7 @@ const ourSponsors = [
  {name:"Breaking News",date:"00/00/0000"},
  {name:"Clevver",date:"00/00/0000"},
  {name:"ESPN",date:"00/00/0000"},
- {name:"NFA",date:"00/00/0000",
+ {name:"NFA",date:"00/00/0000"},
  {name:"Cosmopolitan",date:"00/00/0000"},
  {name:"Buzzfeed",date:"00/00/0000"},
  {name:"iHeartRadio",date:"00/00/0000"},

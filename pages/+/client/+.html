@@ -1,8 +1,31 @@
 <template name="chat">
+  {{#if currentUser}}
   <div class="jumbotron" style="background-color:#f9f5ca;">
     <h1>Create Your Own Posts!</h1>
     <p>Choose from creating posts, polls, and even your very own chat room!</p>
   </div>
+
+
+  <fieldset class="form-group">
+    <legend>Create your own post!</legend>
+        Title your post:
+        <div class="form-group">
+          <input type="text" class="form-control" id="posttitle-js" placeholder="Enter title">
+        </div>
+        Description:
+        <div class="form-group">
+          <input type="text" class="form-control" id="postdesc-js" placeholder="Enter description">
+        </div>
+       Add Photo:
+
+          <div class="form-group">
+            <!-- Add your followers here -->
+            <input type="text" class="form-control" id="postphoto-js" placeholder="Enter photo URL">
+
+          </div>
+        <button class="btn btn-info btn-large" id="postsubmit-js">Create Post</button>
+  </fieldset>
+  <hr>
 
   <fieldset class="form-group">
     <legend>Start your own chat room!</legend>
@@ -17,42 +40,16 @@
         Invite people:
         <div class="form-group">
           <!-- Add your followers here -->
-          <select multiple class="form-control" id="roominvites-js">
-            <option>Follower #1</option>
-            <option>Follower #2</option>
-            <option>Follower #3</option>
-          </select>
-          <small class="form-text text-muted">Ctrl+Click to select multiple followers!</small>
+            <input type="text" class="form-control" id="roomInvites-js" placeholder="Invite a Friend">
+            <input type="text" class="form-control" id="roomInvites-js" placeholder="Invite a Friend">
+            <input type="text" class="form-control" id="roomInvites-js" placeholder="Invite a Friend">
+          <input  id="selectMultiple-js">
+          <small class="form-text text-muted"> Ctrl+Click to select multiple followers!</small>
         </div>
         <button class="btn btn-info btn-large" id="roomsubmit-js">Create Room</button>
     </fieldset>
     <br>
 
-    <fieldset class="form-group">
-      <legend>Create your own post!</legend>
-          Title your post:
-          <div class="form-group">
-            <input type="text" class="form-control" id="posttitle-js" placeholder="Enter title">
-          </div>
-          Description:
-          <div class="form-group">
-            <input type="text" class="form-control" id="postdesc-js" placeholder="Enter description">
-          </div>
-          Invite people:
-          <div class="form-group">
-            <!-- Add your followers here -->
-            <select multiple class="form-control" id="postinvites-js">
-              <option>Follower #1</option>
-              <option>Follower #2</option>
-              <option>Follower #3</option>
-            </select>
-            <small class="form-text text-muted">Ctrl+Click to select multiple followers!</small>
-          </div>
-          <button class="btn btn-info btn-large" id="postsubmit-js">Create Post</button>
-    </fieldset>
-    <br>
-    <button class="btn btn-info btn-large js-chatsubmit">Submit</button>
-    <hr>
 
 
     <fieldset class="form-group">
@@ -75,6 +72,10 @@
           </div>
           <button class="btn btn-info btn-large" id="pollsubmit-js">Create Poll</button>
     </fieldset>
+
+    {{else}}
+    You have to log in to make posts
+    {{/if}}
 
 
 </template>

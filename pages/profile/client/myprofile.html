@@ -1,13 +1,23 @@
-<template name="myprofile">
+<template name="profilepage">
   {{#if currentUser}}
-  <div class="jumbotron" style="background-color:#f9f5ca;">
+    {{> myprofile me=getProfile}}
+  {{else}}
+  <div class="alert alert-warning" role="alert">
+    <strong>Sorry!</strong> You must be logged in to view your profile!
+  </div>
+  {{/if}}
+</template>
+
+<template name="myprofile">
+  <div class="jumbotron">
     <div class="row">
       <div class="col-md-4">
-        <h1>Beyonce</h1><br>
-        <p>18,007 points</p>
+        <h1><input class="form-group" id="name-js" value="{{me.name}}" size="8"></h1><br>
+        <button class="btn btn-primary" id="update-js">Update</button> <button class="btn btn-danger" id="reset-js">Reset</button><br>
+        <p>{{me.points}}</p>
         <!-- If this is current user's profile, have edit button appear -->
       </div>
-      <div class="col-md-2 col-md-offset-6">
+      <div class="col-md-2 col-md-offset-5">
         <br>
         <table class="table">
           <thead>
@@ -17,7 +27,7 @@
           </thead>
           <tbody>
             <tr>
-              <td>116m</td><td>0</td>
+              <td>{{me.followers.length}}</td><td>{{me.following.length}}</td>
             </tr>
           </tbody>
         </table>
@@ -28,16 +38,22 @@
     <div class="col-md-4 col-md-offset-1 bg-info">
       <p>
         <h2>Picture of Me:</h2>
-        <br><img src="https://images-na.ssl-images-amazon.com/images/I/A15dQM39ELL._CR0,0,3840,2880_._SL1000_.jpg" width="100%" alt="Picture of Name">
+        <br><img src="" width="100%" alt="Picture of Name">
+        <div class="form-group">
+          Choose a Profile Picture: <br>
+          <input type="file" class="form-control-file" id="imgSelect-js">
+        </div>
       </p>
     </div>
     <div class="col-md-4 col-md-offset-2 bg-warning">
       <p>
       <h2>Biography:</h2><br>
         Birthday:
-        <textarea class="form-control" readonly rows="1" style="resize:none">Semptember 4, 1981</textarea>
+        <div class="form-group">
+          Date of Birth: <input type="date" class="form-control" id="dob-js">
+        </div>
         <br>Interests:
-        <textarea class="form-control" readonly rows="10" style="resize:none">Performance. Traveling. www.beyonce.com</textarea>
+        <textarea class="form-control" rows="10" id="bio-js" style="resize:none">my interests</textarea>
         <br>
       </p>
     </div>
@@ -48,16 +64,16 @@
       <legend>Recent Activity</legend>
       <div class="row">
         <div class="col-md-2 col-md-offset-1">
-          <input type="radio" id="activity" value ="chat" name="activity" checked> Chats
+          <input type="radio" name="activity" id="chats-js" checked> Chats
         </div>
         <div class="col-md-2 col-md-offset-1">
-          <input type="radio" id="activity" value ="post" name="activity"> Posts
+          <input type="radio" name="activity" id="posts-js"> Posts
         </div>
         <div class="col-md-2 col-md-offset-1">
-          <input type="radio" id="activity" value ="picture" name="activity"> Pictures
+          <input type="radio" name="activity" id="pics-js"> Pictures
         </div>
         <div class="col-md-2 col-md-offset-1">
-          <input type="radio" id="activity" value ="poll" name="activity"> Polls
+          <input type="radio" name="activity" id="polls-js"> Polls
         </div>
       </div>
     </fieldset>
@@ -69,70 +85,16 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Currently Selected Activity</th>
+          <th >Recent {{clickedRecent}}</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Selected#1</td>
-        </tr>
-        <tr>
-          <td>Selected#2</td>
-        </tr>
-        <tr>
-          <td>Selected#3</td>
-        </tr>
-        <tr>
-          <td>Selected#4</td>
-        </tr>
-        <tr>
-          <td>Selected#5</td>
-        </tr>
+        {{#each getRecentCollection}}
+          <tr>
+            <td></td>
+          </tr>
+        {{/each}}
       </tbody>
     </table>
   </div>
-  {{else}}
-  <div class="alert alert-warning" role="alert">
-    <strong>Sorry! </strong> You must be logged in to view your profile!
-  </div>
-  {{/if}}
-</template>
-
-<template name="editprofile">
-<body style="background-color:#6784b5;">
-  <form>
-    <fieldset class="form-group">
-      <legend>Required Info</legend>
-      {{#if displayErrorState}}
-      <div class="alert alert-danger" role="alert">
-        <strong>Error!</strong> The required fields have not been filled.
-      </div>
-      {{/if}}
-      <div class="form-group">
-        Name: <input type="text" class="form-control" id="name-js" placeholder="Enter name">
-      </div>
-      <div class="form-group">
-        Email: <input type="email" class="form-control" id="email-js" placeholder="Enter email">
-      </div>
-      <div class="form-group">
-        Password: <input type="password" class="form-control" id="password-js" placeholder="Password">
-      </div>
-    </fieldset>
-    <fieldset class="form-group">
-      <legend>Optional Info</legend>
-      <div class="form-group">
-        Date of Birth: <input type="date" class="form-control" id="dob-js">
-      </div>
-      <div class="form-group">
-        Biography: <br>
-        <textarea class="form-control" id="bio-js" rows="10" style="resize:none"></textarea>
-      </div>
-      <div class="form-group">
-        Choose a Profile Picture: <br>
-        <input type="file" class="form-control-file" id="imgSelect-js">
-      </div>
-    </fieldset>
-    <button class="btn btn-primary" id="updateprof-js">Update</button>
-  </form>
-</body>
 </template>
