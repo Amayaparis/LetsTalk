@@ -9,6 +9,11 @@
 </template>
 
 <template name="myprofile">
+  {{#if getBadInputState}}
+    <div class="alert alert-danger" role="alert">
+      <strong>Error!</strong> Please add a name to your profile.
+    </div>
+  {{/if}}
   <div class="jumbotron">
     <div class="row">
       <div class="col-md-4">
@@ -102,7 +107,7 @@
         {{#if isPicsClicked}}
           {{#each url in getRecentCollection}}
             <tr>
-              <img src="{{url}}" alt="{{url}}" width="40%">
+              <img src="{{url}}" alt="url={{url}}" width="40%">
             </tr>
           {{/each}}
         {{else}}
