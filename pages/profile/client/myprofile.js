@@ -1,4 +1,7 @@
-Session.set("recentClicked","Chats");
+const RECENT_CLICKED_ID = "recentClicked";
+const BAD_INPUT_ID = "badInput";
+Session.set(RECENT_CLICKED_ID,"Chats");
+Session.set(BAD_INPUT_ID,false);
 
 Template.profilepage.helpers({
   getProfile(){
@@ -29,9 +32,10 @@ Template.myprofile.events({
     const bio = instance.$('#bio-js').val();
     console.log('read bio='+bio);
     if (name == "") {
-      alert("Please enter a name!");
+      Session.set(BAD_INPUT_ID,true);
     }
     else {
+      Session.set(BAD_INPUT_ID,false);
       let prof = Profiles.findOne(this.me._id);
       this.me.name = name;
       this.me.dob = dob;
@@ -46,64 +50,68 @@ Template.myprofile.events({
     document.location.reload();
   },
   "change #chats-js"(event,instance) {
-    Session.set("recentClicked","Chats");
-    console.log("updated recent to="+Session.get("recentClicked"));
+    Session.set(RECENT_CLICKED_ID,"Chats");
+    console.log("updated recent to="+Session.get(RECENT_CLICKED_ID));
   },
   "change #posts-js"(event,instance) {
-    Session.set("recentClicked","Posts");
-    console.log("updated recent to="+Session.get("recentClicked"));
+    Session.set(RECENT_CLICKED_ID,"Posts");
+    console.log("updated recent to="+Session.get(RECENT_CLICKED_ID));
   },
   "change #polls-js"(event,instance) {
-    Session.set("recentClicked","Polls");
-    console.log("updated recent to="+Session.get("recentClicked"));
+    Session.set(RECENT_CLICKED_ID,"Polls");
+    console.log("updated recent to="+Session.get(RECENT_CLICKED_ID));
   },
   "change #pics-js"(event,instance) {
-    Session.set("recentClicked","Pictures");
-    console.log("updated recent to="+Session.get("recentClicked"));
+    Session.set(RECENT_CLICKED_ID,"Pictures");
+    console.log("updated recent to="+Session.get(RECENT_CLICKED_ID));
   }
 })
 
 Template.myprofile.helpers({
   getClickedRecent() {
-    console.log("recent="+Session.get("recentClicked"));
-    return Session.get("recentClicked");
+    console.log("recent="+Session.get(RECENT_CLICKED_ID));
+    return Session.get(RECENT_CLICKED_ID);
+  },
+  getBadInputState() {
+    console.log("bad input state="+Session.get(BAD_INPUT_ID));
+    return Session.get(BAD_INPUT_ID);
   },
   isChatsClicked() {
-    return Session.get("recentClicked") == "Chats";
+    return Session.get(RECENT_CLICKED_ID) == "Chats";
   },
   isPostsClicked() {
-    return Session.get("recentClicked")  == "Posts";
+    return Session.get(RECENT_CLICKED_ID)  == "Posts";
   },
   isPicsClicked() {
-    return Session.get("recentClicked")  == "Pictures";
+    return Session.get(RECENT_CLICKED_ID)  == "Pictures";
   },
   isPollsClicked() {
-    return Session.get("recentClicked")  == "Polls";
+    return Session.get(RECENT_CLICKED_ID)  == "Polls";
   },
   getRecentCollection() {
     var recents = [];
-    if (Session.get("recentClicked") == "Chats") {
+    if (Session.get(RECENT_CLICKED_ID) == "Chats") {
       Chats.find().forEach((chat) => {
         if (chat.createdBy==Meteor.userId()) {
           recents.push(chat);
         }
       });
     }
-    else if (Session.get("recentClicked") == "Posts") {
+    else if (Session.get(RECENT_CLICKED_ID) == "Posts") {
       Posts.find().forEach((post) => {
         if (post.createdBy==Meteor.userId()) {
           recents.push(post);
         }
       });
     }
-    else if (Session.get("recentClicked") == "Pictures") {
+    else if (Session.get(RECENT_CLICKED_ID) == "Pictures") {
       Posts.find().forEach((post) => {
         if (post.createdBy==Meteor.userId()) {
           recents.push(post.url);
         }
       });
     }
-    else if (Session.get("recentClicked") == "Polls") {
+    else if (Session.get(RECENT_CLICKED_ID) == "Polls") {
       Polls.find().forEach((poll) => {
         if (poll.createdBy==Meteor.userId()) {
           recents.push(poll);

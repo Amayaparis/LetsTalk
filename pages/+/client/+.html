@@ -7,6 +7,11 @@
 
 
   <fieldset class="form-group">
+    {{#if getBadPostInputState}}
+      <div class="alert alert-danger" role="alert">
+        <strong>Sorry!</strong> Some of the required fields have not been filled.
+      </div>
+    {{/if}}
     <legend>Create your own post!</legend>
         Title your post:
         <div class="form-group">
@@ -28,6 +33,11 @@
   <hr>
 
   <fieldset class="form-group">
+    {{#if getBadChatInputState}}
+      <div class="alert alert-danger" role="alert">
+        <strong>Sorry!</strong> Some of the required fields have not been filled.
+      </div>
+    {{/if}}
     <legend>Start your own chat room!</legend>
         Name your chat room:
         <div class="form-group">
@@ -36,7 +46,7 @@
         Do you want to add a description?
         <div class="form-group">
           <input type="text" class="form-control" id="roomdesc-js" placeholder="Enter description">
-          
+
         </div>
         Invite people:
         <div class="form-group">
@@ -53,6 +63,11 @@
 
 
     <fieldset class="form-group">
+      {{#if getBadPollInputState}}
+        <div class="alert alert-danger" role="alert">
+          <strong>Sorry!</strong> Some of the required fields have not been filled.
+        </div>
+      {{/if}}
       <legend>Create your own poll!</legend>
           Title your poll:
           <div class="form-group">

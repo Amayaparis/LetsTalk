@@ -1,6 +1,12 @@
 const NEW_CHAT_POINTS = 5;
 const NEW_POST_POINTS = 1;
 const NEW_POLL_POINTS = 3;
+const BAD_POST_INPUT_ID = "badPostInput";
+const BAD_CHAT_INPUT_ID = "badChatInput";
+const BAD_POLL_INPUT_ID = "badPollInput";
+Session.set(BAD_POST_INPUT_ID,false);
+Session.set(BAD_CHAT_INPUT_ID,false);
+Session.set(BAD_POLL_INPUT_ID,false);
 
 Template.chat.helpers({
   chatlines: function(){
@@ -9,7 +15,18 @@ Template.chat.helpers({
     return Chats.find({},
                       {limit:5,
                         sort: {createdAt: -1}})},
-
+  getBadPostInputState() {
+    console.log("bad post input state="+Session.get(BAD_POST_INPUT_ID));
+    return Session.get(BAD_POST_INPUT_ID);
+  },
+  getBadChatInputState() {
+    console.log("bad chat input state="+Session.get(BAD_CHAT_INPUT_ID));
+    return Session.get(BAD_CHAT_INPUT_ID);
+  },
+  getBadPollInputState() {
+    console.log("bad poll input state="+Session.get(BAD_POLL_INPUT_ID));
+    return Session.get(BAD_POLL_INPUT_ID);
+  }
 })
 
 
@@ -21,9 +38,10 @@ Template.chat.events({
     const theDesc = $("#postdesc-js").val();
     const thePhoto = $("#postphoto-js").val();  // read the user's chat text ...
     if (theTitle == "" || theDesc == "" || thePhoto == "") {
-      alert("Some of the required fields have not been filled.");
+      Session.set(BAD_POST_INPUT_ID,true);
     }
     else {
+      Session.set(BAD_POST_INPUT_ID,false);
       const post=
       {title:theTitle,
        desc:theDesc,
@@ -46,9 +64,10 @@ Template.chat.events({
       const theDesc = $("#roomdesc-js").val();
       const theInvite = $("#roominvite-js").val();
       if (theTitle == "" || theDesc == "" || theInvite == "") {
-        alert("Some of the required fields have not been filled.");
+        Session.set(BAD_CHAT_INPUT_ID,true);
       }
       else {
+        Session.set(BAD_CHAT_INPUT_ID,false);
         const ChatRoom=
         {title:theTitle,
          desc:theDesc,
@@ -73,9 +92,10 @@ Template.chat.events({
       const theTopic = $("#polltopic-js").val();
       const theLength = $("#polllength-js").val();
       if (theTitle == "" || theDesc == "" || theTopic == "" || theLength == "") {
-        alert("Some of the required fields have not been filled.");
+        Session.set(BAD_POLL_INPUT_ID,true);
       }
       else {
+        Session.set(BAD_POLL_INPUT_ID,false);
         const poll=
         {title:theTitle,
          desc:theDesc,
