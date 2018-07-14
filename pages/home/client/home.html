@@ -15,17 +15,17 @@
 
 
 <template name="showpost">
-  <h1>{{post.title}}</h1>
+  <h1><a id="{{post.title}}">{{post.title}}</a></h1>
   <div class="row" style="background-color:#eee; padding:20px; margin-bottom:0.5in">
     <div class="col-md-6">
        <em>{{post.desc}}</em>
     </div>
     <div class="col-md-5">
-       <img src="{{post.url}}" width="100%">
+       <img src="{{post.url}}" width="100%" alt="{{post.title}}">
     </div>
 		{{#if canDelete}}
     <div class="col-md-1">
-       <button class="delete">Delete</button>
+       <button class="btn btn-danger">Delete</button>
     </div>
 		{{/if}}
 

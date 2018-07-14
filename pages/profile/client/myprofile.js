@@ -1,7 +1,9 @@
 const RECENT_CLICKED_ID = "recentClicked";
-const BAD_INPUT_ID = "badInput";
+const NAME_EMPTY_ID = "nameEmpty";
+const NAME_EXISTS_ID = "nameExists";
 Session.set(RECENT_CLICKED_ID,"Chats");
-Session.set(BAD_INPUT_ID,false);
+Session.set(NAME_EMPTY_ID,false);
+Session.set(NAME_EXISTS_ID,false);
 
 Template.profilepage.helpers({
   getProfile(){
@@ -32,10 +34,14 @@ Template.myprofile.events({
     const bio = instance.$('#bio-js').val();
     console.log('read bio='+bio);
     if (name == "") {
-      Session.set(BAD_INPUT_ID,true);
+      Session.set(NAME_EMPTY_ID,true);
+    }
+    else if (Profiles.findOne({name:name}) != undefined) {
+      Session.set(NAME_EXISTS_ID,true);
     }
     else {
-      Session.set(BAD_INPUT_ID,false);
+      Session.set(NAME_EMPTY_ID,false);
+      Session.set(NAME_EXISTS_ID,false);
       let prof = Profiles.findOne(this.me._id);
       this.me.name = name;
       this.me.dob = dob;
@@ -72,14 +78,19 @@ Template.myprofile.helpers({
     console.log("recent="+Session.get(RECENT_CLICKED_ID));
     return Session.get(RECENT_CLICKED_ID);
   },
-  getBadInputState() {
-    console.log("bad input state="+Session.get(BAD_INPUT_ID));
-    return Session.get(BAD_INPUT_ID);
+  getNameEmptyState() {
+    console.log("is name empty="+Session.get(NAME_EMPTY_ID));
+    return Session.get(NAME_EMPTY_ID);
+  },
+  getNameExistsState() {
+    console.log("name exists="+Session.get(NAME_EXISTS_ID));
+    return Session.get(NAME_EXISTS_ID);
   },
   isChatsClicked() {
     return Session.get(RECENT_CLICKED_ID) == "Chats";
   },
   isPostsClicked() {
+    console.log("posts clicked");
     return Session.get(RECENT_CLICKED_ID)  == "Posts";
   },
   isPicsClicked() {
@@ -97,17 +108,10 @@ Template.myprofile.helpers({
         }
       });
     }
-    else if (Session.get(RECENT_CLICKED_ID) == "Posts") {
+    else if (Session.get(RECENT_CLICKED_ID) == "Posts" || Session.get(RECENT_CLICKED_ID) == "Pictures") {
       Posts.find().forEach((post) => {
         if (post.createdBy==Meteor.userId()) {
           recents.push(post);
-        }
-      });
-    }
-    else if (Session.get(RECENT_CLICKED_ID) == "Pictures") {
-      Posts.find().forEach((post) => {
-        if (post.createdBy==Meteor.userId()) {
-          recents.push(post.url);
         }
       });
     }

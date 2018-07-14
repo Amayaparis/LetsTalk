@@ -3,15 +3,20 @@
     {{> myprofile me=getProfile}}
   {{else}}
   <div class="alert alert-warning" role="alert">
-    <strong>Sorry!</strong> You must be logged in to view your profile!
+    <strong>Sorry!</strong> You must be logged in to view your profile.
   </div>
   {{/if}}
 </template>
 
 <template name="myprofile">
-  {{#if getBadInputState}}
+  {{#if getNameEmptyState}}
     <div class="alert alert-danger" role="alert">
-      <strong>Error!</strong> Please add a name to your profile.
+      <strong>Sorry!</strong> Your profile cannot have an empty name.
+    </div>
+  {{/if}}
+  {{#if getNameExistsState}}
+    <div class="alert alert-danger" role="alert">
+      <strong>Sorry!</strong> Your profile must have a unique name.
     </div>
   {{/if}}
   <div class="jumbotron">
@@ -105,17 +110,25 @@
       </thead>
       <tbody>
         {{#if isPicsClicked}}
-          {{#each url in getRecentCollection}}
+          {{#each post in getRecentCollection}}
             <tr>
-              <img src="{{url}}" alt="url={{url}}" width="40%">
+              <td><a href="{{pathFor route=post.title}}"><img src="{{post.url}}" alt="{{post.title}}" width="40%"></a></td>
             </tr>
           {{/each}}
         {{else}}
-          {{#each recent in getRecentCollection}}
-            <tr>
-              <td>{{recent.title}}</td>
-            </tr>
-          {{/each}}
+          {{#if isPostsClicked}}
+            {{#each post in getRecentCollection}}
+              <tr>
+                <td><a href="{{pathFor route=post.title}}">{{post.title}}</a></td>
+              </tr>
+            {{/each}}
+          {{else}}
+            {{#each recent in getRecentCollection}}
+              <tr>
+                <td>{{recent.title}}</td>
+              </tr>
+            {{/each}}
+          {{/if}}
         {{/if}}
       </tbody>
     </table>

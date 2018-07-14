@@ -54,6 +54,7 @@ Template.chat.events({
       let prof = Profiles.findOne({owner:Meteor.userId()});
       prof.points += NEW_POST_POINTS;
       Profiles.update(prof._id,prof);
+      Router.route("home#"+post.title);
       Router.go('home');
     }
   },
