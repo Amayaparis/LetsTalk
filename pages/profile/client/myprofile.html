@@ -48,7 +48,7 @@
     <div class="col-md-4 col-md-offset-1 bg-info">
       <p>
         <h2>Picture of Me:</h2>
-        <br><img src="" width="100%" alt="Picture of Name">
+        <br><img src="" width="100%" alt="Picture of {{me.name}}">
         <div class="form-group">
           Choose a Profile Picture: <br>
           <input type="file" class="form-control-file" id="imgSelect-js">
@@ -72,30 +72,52 @@
   <div class="jumbotron">
     <fieldset class="form-group">
       <legend>Recent Activity</legend>
-      <table class="table">
-        <tbody>
+        <div class="btn-group btn-group-toggle btn-group-justified" data-toggle="buttons" style="width:100%">
+          <div class="btn-group">
           {{#if isChatsClicked}}
-            <td><input type="radio" name="activity" id="chats-js" checked> Chats</td>
+          <label class="btn btn-info active">
+            <input type="radio" name="activity" id="chats-js" checked> Chat Rooms
+          </label>
           {{else}}
-            <td><input type="radio" name="activity" id="chats-js"> Chats</td>
+          <label class="btn btn-info">
+            <input type="radio" name="activity" id="chats-js"> Chat Rooms
+          </label>
           {{/if}}
+          </div>
+          <div class="btn-group">
           {{#if isPostsClicked}}
-            <td><input type="radio" name="activity" id="posts-js" checked> Posts</td>
+          <label class="btn btn-info active">
+            <input type="radio" name="activity" id="posts-js" checked> Posts
+          </label>
           {{else}}
-            <td><input type="radio" name="activity" id="posts-js"> Posts</td>
+          <label class="btn btn-info">
+            <input type="radio" name="activity" id="posts-js"> Posts
+          </label>
           {{/if}}
+          </div>
+          <div class="btn-group">
           {{#if isPicsClicked}}
-            <td><input type="radio" name="activity" id="pics-js" checked> Pictures</td>
+          <label class="btn btn-info active">
+            <input type="radio" name="activity" id="pics-js" checked> Pictures
+          </label>
           {{else}}
-            <td><input type="radio" name="activity" id="pics-js"> Pictures</td>
+          <label class="btn btn-info">
+            <input type="radio" name="activity" id="pics-js"> Pictures
+          </label>
           {{/if}}
+          </div>
+          <div class="btn-group">
           {{#if isPollsClicked}}
-            <td><input type="radio" name="activity" id="polls-js" checked> Polls</td>
+          <label class="btn btn-info active">
+            <input type="radio" name="activity" id="polls-js" checked> Polls
+          </label>
           {{else}}
-            <td><input type="radio" name="activity" id="polls-js"> Polls</td>
+          <label class="btn btn-info">
+            <input type="radio" name="activity" id="polls-js"> Polls
+          </label>
           {{/if}}
-        </tbody>
-      </table>
+          </div>
+      </div>
     </fieldset>
   </div>
   <!-- If radio selected a certain one then set the head to the selected item and then update the displayed table items
@@ -112,14 +134,14 @@
         {{#if isPicsClicked}}
           {{#each post in getRecentCollection}}
             <tr>
-              <td><a href="{{pathFor route=post.title}}"><img src="{{post.url}}" alt="{{post.title}}" width="40%"></a></td>
+              <td><a href="{{pathFor route=post.link}}"><img src="{{post.url}}" alt="{{post.title}}" width="40%"></a></td>
             </tr>
           {{/each}}
         {{else}}
           {{#if isPostsClicked}}
             {{#each post in getRecentCollection}}
               <tr>
-                <td><a href="{{pathFor route=post.title}}">{{post.title}}</a></td>
+                <td><a href="{{pathFor route=post.link}}">{{post.title}}</a></td>
               </tr>
             {{/each}}
           {{else}}

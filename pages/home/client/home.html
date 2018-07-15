@@ -1,18 +1,60 @@
 <template name="home">
-<head>
 	<div class="jumbotron" style="background-color:#f9f5ca;">
   	<h1 style="color:#8db3ef;size:30px;">Let's Talk!</h1>
 		<p style="color:#6784b5"><strong>Social media that encourages physical media. Stay connected, not just online.</strong></p>
+		<h3 style="color:#8db3ef;size:30px;">Browse App Activity</h3>
+		<div class="btn-group btn-group-toggle btn-group-justified" data-toggle="buttons" style="width:100%">
+			<div class="btn-group">
+			{{#if isRoomsClicked}}
+			<label class="btn btn-info active">
+				<input type="radio" name="activity" id="chats-js" checked> Chat Rooms
+			</label>
+			{{else}}
+			<label class="btn btn-info">
+				<input type="radio" name="activity" id="chats-js"> Chat Rooms
+			</label>
+			{{/if}}
+			</div>
+			<div class="btn-group">
+			{{#if isPostsClicked}}
+			<label class="btn btn-info active">
+				<input type="radio" name="activity" id="posts-js" checked> Posts
+			</label>
+			{{else}}
+			<label class="btn btn-info">
+				<input type="radio" name="activity" id="posts-js"> Posts
+			</label>
+			{{/if}}
+			</div>
+			<div class="btn-group">
+			{{#if isPollsClicked}}
+			<label class="btn btn-info active">
+				<input type="radio" name="activity" id="polls-js" checked> Polls
+			</label>
+			{{else}}
+			<label class="btn btn-info">
+				<input type="radio" name="activity" id="polls-js"> Polls
+			</label>
+			{{/if}}
+			</div>
 	</div>
-</head>
-<body>
-  {{#each post in posts}}
-  {{> showpost post=post}}
-  {{/each}}
-
-</body>
+</div>
+	{{#if isPostsClicked}}
+  	{{#each post in posts}}
+  	{{> showpost post=post}}
+  	{{/each}}
+	{{/if}}
+	{{#if isRoomsClicked}}
+		<div class="alert alert-info" role="alert">
+	    <strong>Sorry!</strong> This feature has not been added yet.
+	  </div>
+	{{/if}}
+	{{#if isPollsClicked}}
+		<div class="alert alert-info" role="alert">
+			<strong>Sorry!</strong> This feature has not been added yet.
+		</div>
+	{{/if}}
 </template>
-
 
 <template name="showpost">
   <h1><a id="{{post.title}}">{{post.title}}</a></h1>
@@ -28,7 +70,9 @@
        <button class="btn btn-danger">Delete</button>
     </div>
 		{{/if}}
-
-
   </div>
+</template>
+
+<template name="showpoll">
+	<h1><a id="{{post.title}}">{{post.title}}</a></h1>
 </template>

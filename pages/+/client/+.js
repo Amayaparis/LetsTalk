@@ -46,6 +46,7 @@ Template.chat.events({
       {title:theTitle,
        desc:theDesc,
        url:thePhoto,
+       link:"home#"+theTitle,
        createdAt:new Date(),
        createdBy:Meteor.userId()
      };
@@ -54,7 +55,7 @@ Template.chat.events({
       let prof = Profiles.findOne({owner:Meteor.userId()});
       prof.points += NEW_POST_POINTS;
       Profiles.update(prof._id,prof);
-      Router.route("home#"+post.title);
+      Router.route(post.link);
       Router.go('home');
     }
   },
@@ -102,6 +103,7 @@ Template.chat.events({
          desc:theDesc,
          topic:theTopic,
          length:theLength,
+         link:"home#"+theTitle,
          createdAt:new Date(),
          createdBy:Meteor.userId()
        };
