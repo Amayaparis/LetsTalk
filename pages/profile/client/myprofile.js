@@ -131,5 +131,15 @@ Template.myprofile.helpers({
   },
   isRecentsEmpty() {
     return getRecents().length == 0;
+  },
+  chatRooms() {
+    var object1 = Chats.find({invite1:Meteor.userId()}).fetch();
+    var object2 = Chats.find({invite2:Meteor.userId()}).fetch();
+    var object3 = Chats.find({invite3:Meteor.userId()}).fetch();
+    var object4 = Chats.find({createdBy:Meteor.userId()}).fetch();
+
+    var rooms = object1.concat(object2.concat(object3.concat(object4)));
+
+    return rooms
   }
 })
