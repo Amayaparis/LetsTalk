@@ -51,9 +51,15 @@
 		{{/if}}
 	{{/if}}
 	{{#if isRoomsClicked}}
-		<div class="alert alert-info" role="alert">
-	    <strong>Sorry!</strong> This feature has not been added yet.
-	  </div>
+		{{#if noRooms}}
+			<div class="alert alert-info" role="alert">
+				<strong>Sorry!</strong> There are no chat rooms at the moment.
+			</div>
+		{{else}}
+			{{#each room in rooms}}
+			{{> showroom room=room}}
+			{{/each}}
+		{{/if}}
 	{{/if}}
 	{{#if isPollsClicked}}
 		{{#if noPolls}}
@@ -83,6 +89,20 @@
     </div>
 		{{/if}}
   </div>
+</template>
+
+<template name="showroom">
+	<h1><a href="{{room.link}}">{{room.title}}</a></h1>
+	<div class="row" style="background-color:#eee; padding:20px; margin-bottom:0.5in">
+		<div class="col-md-11">
+			 <em>{{room.desc}}</em>
+		</div>
+		{{#if canDeleteRoom}}
+		<div class="col-md-1">
+       <button class="btn btn-danger" id="delroom-js">Delete</button>
+    </div>
+		{{/if}}
+	</div>
 </template>
 
 <template name="showpoll">
