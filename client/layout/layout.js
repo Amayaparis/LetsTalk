@@ -1,8 +1,8 @@
 const PREV_ID = "prevPage";
-Session.set(PREV_ID,"");
+Session.set(PREV_ID,"profilepage");
 
 Template.layout.helpers({
-  check() {
+  loginCheck() {
     if (Meteor.userId()) {
       if (!Profiles.findOne({owner:Meteor.userId()})) {
         Router.go("profilepage");

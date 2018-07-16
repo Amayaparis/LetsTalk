@@ -35,7 +35,7 @@ Template.profilepage.helpers({
   getProfile(){
     var theProfile = Profiles.findOne({owner:Meteor.userId()});
     if (!theProfile) {
-      theProfile = {name:"",dob:"",bio:"",followers:[],following:[],points:0,owner:Meteor.userId()};
+      theProfile = {name:"",dob:"",bio:"",friends:[],points:0,owner:Meteor.userId()};
       var k = Profiles.find().count();
       while (Profiles.findOne({name:"Anonymous"+k})) {
         k++;
@@ -72,8 +72,7 @@ Template.myprofile.events({
       this.me.name = name;
       this.me.dob = dob;
       this.me.bio = bio;
-      this.me.followers = prof.followers;
-      this.me.following = prof.following;
+      this.me.friends = prof.friends;
       this.me.points = prof.points;
       this.me.owner = prof.owner;
       Profiles.update(this.me._id,this.me);
