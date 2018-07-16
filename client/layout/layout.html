@@ -31,6 +31,9 @@
 			    <ul class="nav navbar-nav navbar-right">
 			            {{> loginButtons}} <!-- here -->
 			    </ul>
+					{{#if canBan}}
+						{{ban}}
+					{{/if}}
 					{{loginCheck}}
 
 
