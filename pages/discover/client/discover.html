@@ -1,3 +1,4 @@
+
 <template name="discover">
 <div class="jumbotron" style="background-color:#f9f5ca;">
 	<h1 style="color:#426cb2"> We are sponsored by these news outlets! Check out what's going on right at this moment!</h1>
@@ -74,9 +75,10 @@
 		<div>
 <h2 style="color:#426cb2">Discover events near you!</h2>
 {{#each e in eventsData}}
+	<div class="event" style="border-bottom: 20px solid black;">
 	<h2><a href="{{e.link}}">{{e.name}}</a> {{e.date}}</h2>
 	<img src="{{e.photo}}">
-
+	</div>
 {{/each}}
 </div>
 </template>
