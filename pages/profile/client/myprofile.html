@@ -145,16 +145,13 @@
           {{/if}}
         {{else}}
           {{#if isChatsClicked}}
+            {{#each chatRooms}}
             <tr>
               <td>
-                <div class="alert alert-info" role="alert">
-          	       <strong>Sorry!</strong> This feature has not been added yet.
-                   {{#each chatRooms}}
-                    {{title}}
-                   {{/each}}
-          	    </div>
+                {{title}}
               </td>
             </tr>
+            {{/each}}
           {{else}}
             {{#if isRecentsEmpty}}
               <div class="alert alert-info" role="alert">
