@@ -15,6 +15,12 @@ Template.home.helpers({
   noPolls() {
     return Polls.find().count() == 0;
   },
+  rooms() {
+    return Chats.find({},{sort:{createdAt:-1}});
+  },
+  noRooms() {
+    return Chats.find().count() == 0;
+  },
   isPostsClicked() {
     console.log("is posts="+Session.get(APP_ACTIVITY_CLICKED_ID));
     return Session.get(APP_ACTIVITY_CLICKED_ID) == "Posts";
@@ -129,5 +135,19 @@ Template.showpoll.events({
     let prof = Profiles.findOne({owner:Meteor.userId()});
     prof.points += VOTE_POLL_POINTS;
     Profiles.update(prof._id,prof);
+  }
+})
+
+Template.showroom.events({
+  "click #delroom-js"(event, instance) {
+    console.log("removing room.."+this.room._id);
+    Chats.remove(this.room._id);
+  }
+})
+
+Template.showroom.helpers({
+  canDeleteRoom() {
+    console.log("room creator="+this.room.createdBy);
+    return Meteor.userId() == this.room.createdBy;
   }
 })

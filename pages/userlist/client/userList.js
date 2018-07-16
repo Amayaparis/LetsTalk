@@ -29,6 +29,7 @@ Template.userList.events({
     console.log("updating current user..");
     let currentUser=Profiles.findOne({owner:Meteor.userId()});
     currentUser.reportedUsers.push(this.user._id);
+    currentUser.friends.splice(currentUser.friends.indexOf(this.user._id), 1);
     Profiles.update(currentUser._id,currentUser);
     console.log("updating reported user..");
     let reportedUser=Profiles.findOne(this.user._id);
