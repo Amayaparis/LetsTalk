@@ -9,7 +9,7 @@ const trendingObject =
     {topic:"Opinions on Marvel's movie Ant-man and the Wasp",image:"https://mm.aiircdn.com/478/5b3fb3c561f66.png"},
     {topic:"Trump's child seperation policies",image:"https://www.commondreams.org/sites/default/files/styles/cd_large/public/headlines/gettyimages-967850174-2.jpg?itok=QWJH71dr"},
     {topic:"Women's Right movement",image:"http://socialistworker.org/sites/default/files/images/2011/05/sipaphotosthree072008-sipausa.30068566000008.sm-a.jpg"},
-    {topic:"Approval Rate of Trump",image:"https://imagesvc.timeincapp.com/v3/mm/image?url=https%3A%2F%2Ftimedotcom.files.wordpress.com%2F2017%2F08%2Fscreen-shot-2017-08-31-at-10-12-31-am.png&w=1600&q=70"},
+    {topic:"Approval Rate of Trump",image:"https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fblogs-images.forbes.com%2Fniallmccarthy%2Ffiles%2F2017%2F03%2F20170320_Trump_Approval.jpg"},
     {topic:"How should we fix Global Warming?",image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIvafUR_xCdYLTOglSmm0iHNCqWj83ZUypnmqaiBeInD0xZxKe"},
     {topic:"Environmental waste, Single plastic use",image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOGeYHZuWEoQGh0M4TkBFszzatuDqMTBCfoizSWHK-mfyBXjS-"},
     {topic:"Police Brutality effects the nation",image:"http://cocosouthla.org/wp-content/uploads/2016/09/Dennis-Story.jpg"},
