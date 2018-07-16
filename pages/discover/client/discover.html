@@ -74,8 +74,9 @@
 		<div>
 <h2 style="color:#426cb2">Discover events near you!</h2>
 {{#each e in eventsData}}
-	<h2>{{e.name}} {{e.date}}</h2>
+	<h2><a href="{{e.link}}">{{e.name}}</a> {{e.date}}</h2>
 	<img src="{{e.photo}}">
+
 {{/each}}
 </div>
 </template>

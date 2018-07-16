@@ -15,8 +15,8 @@ const ourSponsors = [
 
 
 const ourEvents = [
-  {name:" National Women's Equality Day/Anniversary of the 19th Amendment ",date:"Aug 18",
-  photo:"https://brho.montgomery-group.com/wp-content/uploads/2017/08/Womens-Equality-Day-1-600x675.jpg"}
+  {name:" Women's March NYC 2019 ",date:"Sat, April 20, 2019",
+  photo:"https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F42557726%2F249281032365%2F1%2Foriginal.jpg?w=800&auto=compress&rect=294%2C0%2C2354%2C1177&s=71c37e544ac55dd1adb08eefcdb64ff8", link:"https://www.eventbrite.com/e/womens-march-nyc-2019-tickets-44430426602?aff=ebdssbdestsearch"}
 ]
 Template.discover.helpers({
 	eventsData: function() {return ourEvents},
