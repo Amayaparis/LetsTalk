@@ -77,16 +77,17 @@ Template.chat.events({
          desc:theDesc,
          invites:theInvite,
          createdAt:new Date(),
-         createdBy:Meteor.userId()
+         createdBy:Meteor.userId(),
+         link:"/chats/"+theTitle
        };
        Chats.insert(ChatRoom);
        console.log(`just created ${JSON.stringify(ChatRoom)}`)
        let prof = Profiles.findOne({owner:Meteor.userId()});
-       if (!prof)
-        prof=getProfile();
        prof.points += NEW_CHAT_POINTS;
        Profiles.update(prof._id,prof);
-        Router.go('profilepage')
+       if (!Router.routes[ChatRoom.link])
+        Router.route(ChatRoom.link);
+       Router.go('profilepage')
       }
     },
 
@@ -120,7 +121,7 @@ Template.chat.events({
        Profiles.update(prof._id,prof);
        if (!Router.routes[poll.link])
         Router.route(poll.link);
-       Router.go('profilepage')
+       Router.go('home')
       }
     }
 });

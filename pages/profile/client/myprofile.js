@@ -35,7 +35,7 @@ Template.profilepage.helpers({
   getProfile(){
     var theProfile = Profiles.findOne({owner:Meteor.userId()});
     if (!theProfile) {
-      theProfile = {name:"",dob:"",bio:"",friends:[],points:0,owner:Meteor.userId()};
+      theProfile = {name:"",dob:"",bio:"",friends:[],reports:0,reportedUsers:[],points:0,owner:Meteor.userId()};
       var k = Profiles.find().count();
       while (Profiles.findOne({name:"Anonymous"+k})) {
         k++;
@@ -73,6 +73,8 @@ Template.myprofile.events({
       this.me.dob = dob;
       this.me.bio = bio;
       this.me.friends = prof.friends;
+      this.me.reports = prof.reports;
+      this.me.reportedUsers = prof.reportedUsers;
       this.me.points = prof.points;
       this.me.owner = prof.owner;
       Profiles.update(this.me._id,this.me);
@@ -116,7 +118,6 @@ Template.myprofile.helpers({
     return Session.get(RECENT_CLICKED_ID) == "Chats";
   },
   isPostsClicked() {
-    console.log("posts clicked");
     return Session.get(RECENT_CLICKED_ID)  == "Posts";
   },
   isPicsClicked() {
@@ -140,5 +141,8 @@ Template.myprofile.helpers({
     var rooms = object1.concat(object2.concat(object3.concat(object4)));
 
     return rooms
+  },
+  noChats() {
+    return Chats.find().count() == 0;
   }
 })
