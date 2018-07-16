@@ -14,12 +14,17 @@ const trendingObject =
     {topic:"Environmental waste, Single plastic use",image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOGeYHZuWEoQGh0M4TkBFszzatuDqMTBCfoizSWHK-mfyBXjS-"},
     {topic:"Police Brutality effects the nation",image:"http://cocosouthla.org/wp-content/uploads/2016/09/Dennis-Story.jpg"},
     {topic:"Are you heard on other social media apps?",images:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfTi1daBIasQDx5PD5j1kH9f3yL9U4a_hAh9btwfOQGrgVnjUu"},
-    {topic:"How Plastic surgery effect society",image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZqCBI-9xQ029OkarBM2bWEia0XLJEmYefgsV3yiw4WZ9meeYybg"},
-    {topic:"Kpop idols Lee Dong Wook And Suzy Confirmed To Have Broken Up",image:"https://0.soompi.io/wp-content/uploads/2018/07/01175957/Lee-Dong-Wook-Suzy.jpg"},
-    {topic:"Kpop girl group TWICE Names Who Would Be Best At Acting And Who Buys Members Food The Least",image:"https://0.soompi.io/wp-content/uploads/2018/07/13074147/twice6.jpg"},
-    {topic:"Kpop idol Jessi says how kpop group bts are more genuine friends unlike other people in the industry.", image:"https://www.allkpop.com/upload/2018/07/af_org/11171842/bts-jessica-ho.jpg"},
-    {topic:"Kpop group BTS is one of the biggest worldwide so far.", image:"https://www.dramafever.com/st/news/images/1275656d-bff7-4809-8792-8af2af6ddcd0.jpg"},
-  
+    {topic:"How Plastic surgery affects society",image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZqCBI-9xQ029OkarBM2bWEia0XLJEmYefgsV3yiw4WZ9meeYybg"},
+    {topic:"Beauty Trends",image:"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/spring-summer-2018-hair-makeup-beauty-trends-1507655639.jpg?crop=1.00xw:1.00xh;0,0&resize=480"},
+    {topic:"Beauty Donts",image:"https://i2-prod.mirror.co.uk/incoming/article11688451.ece/ALTERNATES/s615/Wacky-Beauty-Trends-MAIN.jpg"},
+    {topic:"Acrylic vs. Gel",image:"https://www.differencebtw.com/wp-content/uploads/2017/04/acrylic-nails-vs-gel-nails-990x495.jpg"},
+    {topic:"Fashion",image: "https://i.ytimg.com/vi/9wIn5vVwLeU/maxresdefault.jpg"},
+    {topic:"models",image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOpnll-ekqaJkSR4G3osd118a-Tu5siGN0vH5JDocMsLNsmqalEg"},
+
+
+
+
+
   ]
 
   Template.search.helpers(
