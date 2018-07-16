@@ -32,12 +32,12 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Followers</th><th>Following</th>
+              <th>Friends</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>{{me.followers.length}}</td><td>{{me.following.length}}</td>
+              <td>{{me.friends.length}}</td>
             </tr>
           </tbody>
         </table>
@@ -145,13 +145,19 @@
           {{/if}}
         {{else}}
           {{#if isChatsClicked}}
-            {{#each chatRooms}}
-            <tr>
-              <td>
-                <a href="/chats/{{_id}}">{{title}}</a>
-              </td>
-            </tr>
-            {{/each}}
+            {{#if noChats}}
+            <div class="alert alert-info" role="alert">
+               <strong>Sorry!</strong> It looks like {{me.name}} has not created any Chat Rooms.
+            </div>
+            {{else}}
+              {{#each chatRooms}}
+              <tr>
+                <td>
+                  <a href="{{link}}">{{title}}</a>
+                </td>
+              </tr>
+              {{/each}}
+            {{/if}}
           {{else}}
             {{#if isRecentsEmpty}}
               <div class="alert alert-info" role="alert">

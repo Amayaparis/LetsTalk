@@ -1,11 +1,39 @@
 <template name="userList">
-  <button class="add-me-js">Add me</button>
-  <button class="js-remove-all">Clear</button>
-  <ol>
-    {{#each connection in connections}}
-    <li> <a href="http://{{connection.localIP}}:3000">
-      {{connection.userName}} at {{connection.localIP}}
-    </a></li>
+  <div class="jumbotron" style="background-color:#f9f5ca;">
+    <h1 style="color:#8db3ef;size:30px;">Let's Talk!</h1>
+    <p style="color:#6784b5"><strong>Connect with other users here!</strong></p>
+    {{#each user in users}}
+    {{> userDisplay user=user}}
     {{/each}}
-  </ol>
+  </div>
+</template>
+
+<template name="userDisplay">
+  <h3>{{user.name}}</h3>
+  <div class="row" style="background-color:#eee; padding:20px; margin-bottom:0.5in">
+    <div class="col-md-9">
+       <em>{{user.bio}}</em>
+    </div>
+		{{#if canFriend}}
+    <div class="col-md-1">
+       <button class="btn btn-success" id="friend-js">Friend</button>
+    </div>
+		{{/if}}
+    {{#if canUnFriend}}
+    <div class="col-md-1">
+       <button class="btn btn-warning" id="unfriend-js">Unfriend</button>
+    </div>
+    {{/if}}
+    {{#if canReport}}
+    <div class="col-md-1">
+      <button class="btn btn-danger" id="report-js">Report</button>
+    </div>
+    {{else}}
+      {{#if reported}}
+        <div class="col-md-1">
+          <button class="btn btn-danger" disabled>Reported</button>
+        </div>
+      {{/if}}
+    {{/if}}
+  </div>
 </template>

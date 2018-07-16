@@ -1,31 +1,67 @@
 Template.userList.helpers({
-  'users': function () {
-
-    return Meteor.users.find();
-  },
-  'connections': function(){
-    return Connections.find();
-  },
-  'connect': function() {
-    console.log("finding connections!");
-    const z = Connections.find();
-    zz = Meteor.call("getInfo",[]);
-    console.log("myIP= "+zz);
-
-    console.log("**** connections = "+JSON.stringify(z.fetch()));
-    return z;
+  users() {
+    return Profiles.find().fetch();
   }
 });
 
 Template.userList.events({
-  'click .add-me-js': function(){
-    console.log("clicked!");
-    Meteor.call("getInfo");
+  "click #friend-js"(event, instance) {
+    console.log("updating current user..");
+    let currentUser=Profiles.findOne({owner:Meteor.userId()});
+    currentUser.friends.push(this.user._id);
+    Profiles.update(currentUser._id,currentUser);
+    console.log("updating new friend..");
+    let newFriend=Profiles.findOne(this.user._id);
+    newFriend.friends.push(currentUser._id);
+    Profiles.update(newFriend._id,newFriend);
   },
-
-  'click .js-remove-all': function(event){
-    console.log("removing...");
-    Meteor.call("removeAll");
+  "click #unfriend-js"(event, instance) {
+    console.log("updating current user..");
+    let currentUser=Profiles.findOne({owner:Meteor.userId()});
+    currentUser.friends.splice(currentUser.friends.indexOf(this.user._id), 1);
+    Profiles.update(currentUser._id,currentUser);
+    console.log("updating former friend..");
+    let formerFriend=Profiles.findOne(this.user._id);
+    formerFriend.friends.splice(formerFriend.friends.indexOf(currentUser._id), 1);
+    Profiles.update(formerFriend._id,formerFriend);
   },
+  "click #report-js"(event, instance) {
+    console.log("updating current user..");
+    let currentUser=Profiles.findOne({owner:Meteor.userId()});
+    currentUser.reportedUsers.push(this.user._id);
+    Profiles.update(currentUser._id,currentUser);
+    console.log("updating reported user..");
+    let reportedUser=Profiles.findOne(this.user._id);
+    reportedUser.reports += 1;
+    Profiles.update(reportedUser._id,reportedUser);
+  }
+})
 
+Template.userDisplay.helpers({
+  canFriend() {
+    if (!Meteor.userId())
+      return false;
+    let prof=Profiles.findOne({owner:Meteor.userId()});
+    console.log("can friend="+prof.friends.indexOf(this.user._id) == -1 && this.user.owner != Meteor.userId());
+    return prof.friends.indexOf(this.user._id) == -1 && this.user.owner != Meteor.userId();
+  },
+  canUnFriend() {
+    if (!Meteor.userId())
+      return false;
+    let prof=Profiles.findOne({owner:Meteor.userId()});
+    console.log("can unfriend="+prof.friends.indexOf(this.user._id) > -1);
+    return prof.friends.indexOf(this.user._id) > -1;
+  },
+  canReport() {
+    if (!Meteor.userId())
+      return false;
+    let prof=Profiles.findOne({owner:Meteor.userId()});
+    console.log("can report="+prof.reportedUsers.indexOf(this.user._id)==-1 && this.user.owner != Meteor.userId());
+    return prof.reportedUsers.indexOf(this.user._id) == -1 && this.user.owner != Meteor.userId();
+  },
+  reported() {
+    if (!Meteor.userId())
+      return false;
+    return Meteor.userId() != this.user._id && Profiles.findOne({owner:Meteor.userId()}).reportedUsers.indexOf(this.user._id) >= 0;
+  }
 })
