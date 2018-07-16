@@ -7,7 +7,7 @@ Template.chatroom.helpers({
 
 Template.chatroom.events({
   "click #submitmsg"(event,instance){
-    const name = instance.$("#name").val()
+    const name =Profiles.findOne({owner:Meteor.userId()}).name;
     const msg = instance.$("#usermsg").val()
     const title = instance.$("#title").html()
     console.log("name is "+name)
