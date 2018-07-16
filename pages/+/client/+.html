@@ -5,8 +5,12 @@
     <p>Choose from creating posts, polls, and even your very own chat room!</p>
   </div>
 
-
   <fieldset class="form-group">
+    {{#if getBadPostInputState}}
+      <div class="alert alert-danger" role="alert">
+        <strong>Sorry!</strong> Some of the required fields have not been filled.
+      </div>
+    {{/if}}
     <legend>Create your own post!</legend>
         Title your post:
         <div class="form-group">
@@ -28,6 +32,11 @@
   <hr>
 
   <fieldset class="form-group">
+    {{#if getBadChatInputState}}
+      <div class="alert alert-danger" role="alert">
+        <strong>Sorry!</strong> Some of the required fields have not been filled.
+      </div>
+    {{/if}}
     <legend>Start your own chat room!</legend>
         Name your chat room:
         <div class="form-group">
@@ -36,7 +45,7 @@
         Do you want to add a description?
         <div class="form-group">
           <input type="text" class="form-control" id="roomdesc-js" placeholder="Enter description">
-          
+
         </div>
         Invite people:
         <div class="form-group">
@@ -44,15 +53,17 @@
           <input type="text" class="form-control" id="roominvite-js" placeholder="Invite a Friend">
           <input type="text" class="form-control" id="roominvite-js" placeholder="Invite a Friend">
           <input type="text" class="form-control" id="roominvite-js" placeholder="Invite a Friend">
-          <small class="form-text text-muted">Ctrl+Click to select multiple followers!</small>
         </div>
         <button class="btn btn-info btn-large" id="roomsubmit-js">Create Room</button>
     </fieldset>
     <br>
 
-
-
     <fieldset class="form-group">
+      {{#if getBadPollInputState}}
+        <div class="alert alert-danger" role="alert">
+          <strong>Sorry!</strong> Some of the required fields have not been filled.
+        </div>
+      {{/if}}
       <legend>Create your own poll!</legend>
           Title your poll:
           <div class="form-group">
@@ -66,15 +77,19 @@
           <div class="form-group">
             <input type="text" class="form-control" id="polltopic-js" placeholder="Enter topic">
           </div>
-          How long do you want your poll to be open?
+          When do you want to your poll to end?
           <div class="form-group">
-            <input type="text" class="form-control" id="polllength-js" placeholder="Enter poll time length">
+            <input type="time" class="form-control" id="pollendtime-js">
           </div>
+          <small class="form-text text-muted">When you have selected one section of the time, you can also type instead of using the up and down arrows.</small>
+          <br>
           <button class="btn btn-info btn-large" id="pollsubmit-js">Create Poll</button>
     </fieldset>
 
     {{else}}
-    You have to log in to make posts
+      <div class="alert alert-warning" role="alert">
+        <strong>Sorry!</strong> You must be logged in to make posts.
+      </div>
     {{/if}}
 
 

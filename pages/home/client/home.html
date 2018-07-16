@@ -1,32 +1,123 @@
 <template name="home">
-<head>
 	<div class="jumbotron" style="background-color:#f9f5ca;">
   	<h1 style="color:#8db3ef;size:30px;">Let's Talk!</h1>
 		<p style="color:#6784b5"><strong>Social media that encourages physical media. Stay connected, not just online.</strong></p>
+		<h3 style="color:#8db3ef;size:30px;">Browse App Activity</h3>
+		<div class="btn-group btn-group-toggle btn-group-justified" data-toggle="buttons" style="width:100%">
+			<div class="btn-group">
+			{{#if isRoomsClicked}}
+			<label class="btn btn-info active">
+				<input type="radio" name="activity" id="chats-js" checked> Chat Rooms
+			</label>
+			{{else}}
+			<label class="btn btn-info">
+				<input type="radio" name="activity" id="chats-js"> Chat Rooms
+			</label>
+			{{/if}}
+			</div>
+			<div class="btn-group">
+			{{#if isPostsClicked}}
+			<label class="btn btn-info active">
+				<input type="radio" name="activity" id="posts-js" checked> Posts
+			</label>
+			{{else}}
+			<label class="btn btn-info">
+				<input type="radio" name="activity" id="posts-js"> Posts
+			</label>
+			{{/if}}
+			</div>
+			<div class="btn-group">
+			{{#if isPollsClicked}}
+			<label class="btn btn-info active">
+				<input type="radio" name="activity" id="polls-js" checked> Polls
+			</label>
+			{{else}}
+			<label class="btn btn-info">
+				<input type="radio" name="activity" id="polls-js"> Polls
+			</label>
+			{{/if}}
+			</div>
 	</div>
-</head>
-<body>
-  {{#each post in posts}}
-  {{> showpost post=post}}
-  {{/each}}
-
-</body>
+</div>
+	{{#if isPostsClicked}}
+		{{#if noPosts}}
+			<div class="alert alert-info" role="alert">
+				<strong>Sorry!</strong> There are no posts at the moment.
+			</div>
+		{{else}}
+	  	{{#each post in posts}}
+	  	{{> showpost post=post}}
+	  	{{/each}}
+		{{/if}}
+	{{/if}}
+	{{#if isRoomsClicked}}
+		<div class="alert alert-info" role="alert">
+	    <strong>Sorry!</strong> This feature has not been added yet.
+	  </div>
+	{{/if}}
+	{{#if isPollsClicked}}
+		{{#if noPolls}}
+			<div class="alert alert-info" role="alert">
+				<strong>Sorry!</strong> There are no polls at the moment.
+			</div>
+		{{else}}
+			{{#each poll in polls}}
+			{{> showpoll poll=poll}}
+			{{/each}}
+		{{/if}}
+	{{/if}}
 </template>
 
-
 <template name="showpost">
-  <h1>{{post.title}}</h1>
+  <h1><a id="{{post.title}}">{{post.title}}</a></h1>
   <div class="row" style="background-color:#eee; padding:20px; margin-bottom:0.5in">
     <div class="col-md-6">
        <em>{{post.desc}}</em>
     </div>
     <div class="col-md-5">
-       <img src="{{post.url}}" width="100%">
+       <img src="{{post.url}}" width="100%" alt="{{post.title}}">
     </div>
+		{{#if canDeletePost}}
     <div class="col-md-1">
-       <button class="delete">Delete</button>
+       <button class="btn btn-danger" id="delpost-js">Delete</button>
     </div>
-
-
+		{{/if}}
   </div>
+</template>
+
+<template name="showpoll">
+	<h1><a id="{{poll.title}}">{{poll.title}}</a></h1>
+	<div class="row" style="background-color:#eee; padding:20px; margin-bottom:0.5in">
+		<div class="row">
+			<div class="col-md-5">
+	       <strong>{{poll.topic}}:</strong><em>{{poll.desc}}</em>
+	    </div>
+	    <div class="col-md-4">
+	       <strong>Poll Ends At:</strong><em>{{poll.endTime}}</em>
+	    </div>
+		</div>
+		<div class="row">
+			{{#if currentUser}}
+			<div class="btn-group">
+				{{#if canVote}}
+					<label class="btn">
+						 <button class="btn btn-success" id="pollvoteyes-js">Yes</button>
+					</label>
+					<label class="btn">
+						 <button class="btn btn-warning" id="pollvoteno-js">No</button>
+					</label>
+				{{/if}}
+				{{#if canDeletePoll}}
+				<label class="btn">
+					 <button class="btn btn-danger" id="delpoll-js">Delete</button>
+				</label>
+				{{/if}}
+			</div>
+			{{else}}
+				<div class="alert alert-warning" role="alert">
+					<strong>Sorry!</strong> You must be logged in to vote in polls.
+				</div>
+			{{/if}}
+		</div>
+	</div>
 </template>

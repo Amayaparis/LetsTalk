@@ -3,12 +3,22 @@
     {{> myprofile me=getProfile}}
   {{else}}
   <div class="alert alert-warning" role="alert">
-    <strong>Sorry!</strong> You must be logged in to view your profile!
+    <strong>Sorry!</strong> You must be logged in to view your profile.
   </div>
   {{/if}}
 </template>
 
 <template name="myprofile">
+  {{#if getNameEmptyState}}
+    <div class="alert alert-danger" role="alert">
+      <strong>Sorry!</strong> Your profile cannot have an empty name.
+    </div>
+  {{/if}}
+  {{#if getNameExistsState}}
+    <div class="alert alert-danger" role="alert">
+      <strong>Sorry!</strong> Your profile must have a unique name.
+    </div>
+  {{/if}}
   <div class="jumbotron">
     <div class="row">
       <div class="col-md-4">
@@ -38,7 +48,7 @@
     <div class="col-md-4 col-md-offset-1 bg-info">
       <p>
         <h2>Picture of Me:</h2>
-        <br><img src="" width="100%" alt="Picture of Name">
+        <br><img src="" width="100%" alt="Picture of {{me.name}}">
         <div class="form-group">
           Choose a Profile Picture: <br>
           <input type="file" class="form-control-file" id="imgSelect-js">
@@ -62,14 +72,52 @@
   <div class="jumbotron">
     <fieldset class="form-group">
       <legend>Recent Activity</legend>
-      <table class="table">
-        <tbody>
-          <td><input type="radio" name="activity" id="chats-js" checked> Chats</td>
-          <td><input type="radio" name="activity" id="posts-js"> Posts</td>
-          <td><input type="radio" name="activity" id="pics-js"> Pictures</td>
-          <td><input type="radio" name="activity" id="polls-js"> Polls</td>
-        </tbody>
-      </table>
+        <div class="btn-group btn-group-toggle btn-group-justified" data-toggle="buttons" style="width:100%">
+          <div class="btn-group">
+          {{#if isChatsClicked}}
+          <label class="btn btn-info active">
+            <input type="radio" name="activity" id="chats-js" checked> Chat Rooms
+          </label>
+          {{else}}
+          <label class="btn btn-info">
+            <input type="radio" name="activity" id="chats-js"> Chat Rooms
+          </label>
+          {{/if}}
+          </div>
+          <div class="btn-group">
+          {{#if isPostsClicked}}
+          <label class="btn btn-info active">
+            <input type="radio" name="activity" id="posts-js" checked> Posts
+          </label>
+          {{else}}
+          <label class="btn btn-info">
+            <input type="radio" name="activity" id="posts-js"> Posts
+          </label>
+          {{/if}}
+          </div>
+          <div class="btn-group">
+          {{#if isPicsClicked}}
+          <label class="btn btn-info active">
+            <input type="radio" name="activity" id="pics-js" checked> Pictures
+          </label>
+          {{else}}
+          <label class="btn btn-info">
+            <input type="radio" name="activity" id="pics-js"> Pictures
+          </label>
+          {{/if}}
+          </div>
+          <div class="btn-group">
+          {{#if isPollsClicked}}
+          <label class="btn btn-info active">
+            <input type="radio" name="activity" id="polls-js" checked> Polls
+          </label>
+          {{else}}
+          <label class="btn btn-info">
+            <input type="radio" name="activity" id="polls-js"> Polls
+          </label>
+          {{/if}}
+          </div>
+      </div>
     </fieldset>
   </div>
   <!-- If radio selected a certain one then set the head to the selected item and then update the displayed table items
@@ -83,11 +131,41 @@
         </tr>
       </thead>
       <tbody>
-        {{#each recent in getRecentCollection}}
-          <tr>
-            <td>{{recent.title}}</td>
-          </tr>
-        {{/each}}
+        {{#if isPicsClicked}}
+          {{#if isRecentsEmpty}}
+            <div class="alert alert-info" role="alert">
+               <strong>Sorry!</strong> It looks like {{me.name}} has not posted any {{getClickedRecent}}.
+            </div>
+          {{else}}
+            {{#each post in getRecentCollection}}
+              <tr>
+                <td><a href="{{pathFor route=post.link}}"><img src="{{post.url}}" alt="{{post.title}}" width="40%"></a></td>
+              </tr>
+            {{/each}}
+          {{/if}}
+        {{else}}
+          {{#if isChatsClicked}}
+            <tr>
+              <td>
+                <div class="alert alert-info" role="alert">
+          	       <strong>Sorry!</strong> This feature has not been added yet.
+          	    </div>
+              </td>
+            </tr>
+          {{else}}
+            {{#if isRecentsEmpty}}
+              <div class="alert alert-info" role="alert">
+                 <strong>Sorry!</strong> It looks like {{me.name}} has not created any {{getClickedRecent}}.
+              </div>
+            {{else}}
+              {{#each recent in getRecentCollection}}
+                <tr>
+                  <td><a href="{{pathFor route=recent.link}}">{{recent.title}}</a></td>
+                </tr>
+              {{/each}}
+            {{/if}}
+          {{/if}}
+        {{/if}}
       </tbody>
     </table>
   </div>
