@@ -34,6 +34,7 @@ Template.userList.events({
     console.log("updating reported user..");
     let reportedUser=Profiles.findOne(this.user._id);
     reportedUser.reports += 1;
+    reportedUser.friends.splice(reportedUser.friends.indexOf(currentUser._id), 1);
     Profiles.update(reportedUser._id,reportedUser);
   }
 })
