@@ -1,7 +1,43 @@
 <template name="chatroom">
-<h1>{{title}}</h1>
+<h1 id="title">{{title}}</h1>
 <h3>{{desc}}</h3>
 
+<title>Chat - Customer Module</title>
+<link type="text/css" rel="stylesheet" href="style.css" />
+
+<div id="wrapper">
+    <div id="menu">
+        <p class="welcome">Welcome, <b></b></p>
+        <p class="logout"><a id="exit" href="#">Exit Chat</a></p>
+      </div>
+        <div style="clear:both"></div>
+
+    <div id="chatbox">
+messages go here
+ {{#each msg in messages}}
+ {{msg.when}}<br>
+  {{msg.name}}: {{msg.msg}}
+  <hr><br>
+ {{/each}}
+    </div>
+
+
+            <input name="usermsg" type="text" id="usermsg" size="63" />
+            <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
+
+    </div>
+
+
+    <div id="loginform">
+
+        <p>Please enter your name to continue:</p>
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" />
+        <input type="submit" name="enter" id="enter" value="Enter" />
+
+    </div>
+
+}
 
 
 
