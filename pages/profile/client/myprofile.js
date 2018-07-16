@@ -5,6 +5,32 @@ Session.set(RECENT_CLICKED_ID,"Chats");
 Session.set(NAME_EMPTY_ID,false);
 Session.set(NAME_EXISTS_ID,false);
 
+function getRecents() {
+  let recents = [];
+  if (Session.get(RECENT_CLICKED_ID) == "Chats") {
+    Chats.find().forEach((chat) => {
+      if (chat.createdBy==Meteor.userId()) {
+        recents.push(chat);
+      }
+    });
+  }
+  else if (Session.get(RECENT_CLICKED_ID) == "Posts" || Session.get(RECENT_CLICKED_ID) == "Pictures") {
+    Posts.find().forEach((post) => {
+      if (post.createdBy==Meteor.userId()) {
+        recents.push(post);
+      }
+    });
+  }
+  else if (Session.get(RECENT_CLICKED_ID) == "Polls") {
+    Polls.find().forEach((poll) => {
+      if (poll.createdBy==Meteor.userId()) {
+        recents.push(poll);
+      }
+    });
+  }
+  return recents;
+}
+
 Template.profilepage.helpers({
   getProfile(){
     var theProfile = Profiles.findOne({owner:Meteor.userId()});
@@ -49,6 +75,7 @@ Template.myprofile.events({
       this.me.followers = prof.followers;
       this.me.following = prof.following;
       this.me.points = prof.points;
+      this.me.owner = prof.owner;
       Profiles.update(this.me._id,this.me);
     }
   },
@@ -100,28 +127,9 @@ Template.myprofile.helpers({
     return Session.get(RECENT_CLICKED_ID)  == "Polls";
   },
   getRecentCollection() {
-    var recents = [];
-    if (Session.get(RECENT_CLICKED_ID) == "Chats") {
-      Chats.find().forEach((chat) => {
-        if (chat.createdBy==Meteor.userId()) {
-          recents.push(chat);
-        }
-      });
-    }
-    else if (Session.get(RECENT_CLICKED_ID) == "Posts" || Session.get(RECENT_CLICKED_ID) == "Pictures") {
-      Posts.find().forEach((post) => {
-        if (post.createdBy==Meteor.userId()) {
-          recents.push(post);
-        }
-      });
-    }
-    else if (Session.get(RECENT_CLICKED_ID) == "Polls") {
-      Polls.find().forEach((poll) => {
-        if (poll.createdBy==Meteor.userId()) {
-          recents.push(poll);
-        }
-      });
-    }
-    return recents;
+    return getRecents();
+  },
+  isRecentsEmpty() {
+    return getRecents().length == 0;
   }
 })

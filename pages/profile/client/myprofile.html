@@ -132,24 +132,38 @@
       </thead>
       <tbody>
         {{#if isPicsClicked}}
-          {{#each post in getRecentCollection}}
-            <tr>
-              <td><a href="{{pathFor route=post.link}}"><img src="{{post.url}}" alt="{{post.title}}" width="40%"></a></td>
-            </tr>
-          {{/each}}
-        {{else}}
-          {{#if isPostsClicked}}
+          {{#if isRecentsEmpty}}
+            <div class="alert alert-info" role="alert">
+               <strong>Sorry!</strong> It looks like {{me.name}} has not posted any {{getClickedRecent}}.
+            </div>
+          {{else}}
             {{#each post in getRecentCollection}}
               <tr>
-                <td><a href="{{pathFor route=post.link}}">{{post.title}}</a></td>
+                <td><a href="{{pathFor route=post.link}}"><img src="{{post.url}}" alt="{{post.title}}" width="40%"></a></td>
               </tr>
             {{/each}}
+          {{/if}}
+        {{else}}
+          {{#if isChatsClicked}}
+            <tr>
+              <td>
+                <div class="alert alert-info" role="alert">
+          	       <strong>Sorry!</strong> This feature has not been added yet.
+          	    </div>
+              </td>
+            </tr>
           {{else}}
-            {{#each recent in getRecentCollection}}
-              <tr>
-                <td>{{recent.title}}</td>
-              </tr>
-            {{/each}}
+            {{#if isRecentsEmpty}}
+              <div class="alert alert-info" role="alert">
+                 <strong>Sorry!</strong> It looks like {{me.name}} has not created any {{getClickedRecent}}.
+              </div>
+            {{else}}
+              {{#each recent in getRecentCollection}}
+                <tr>
+                  <td><a href="{{pathFor route=recent.link}}">{{recent.title}}</a></td>
+                </tr>
+              {{/each}}
+            {{/if}}
           {{/if}}
         {{/if}}
       </tbody>

@@ -40,9 +40,15 @@
 	</div>
 </div>
 	{{#if isPostsClicked}}
-  	{{#each post in posts}}
-  	{{> showpost post=post}}
-  	{{/each}}
+		{{#if noPosts}}
+			<div class="alert alert-info" role="alert">
+				<strong>Sorry!</strong> There are no posts at the moment.
+			</div>
+		{{else}}
+	  	{{#each post in posts}}
+	  	{{> showpost post=post}}
+	  	{{/each}}
+		{{/if}}
 	{{/if}}
 	{{#if isRoomsClicked}}
 		<div class="alert alert-info" role="alert">
@@ -50,9 +56,15 @@
 	  </div>
 	{{/if}}
 	{{#if isPollsClicked}}
-		<div class="alert alert-info" role="alert">
-			<strong>Sorry!</strong> This feature has not been added yet.
-		</div>
+		{{#if noPolls}}
+			<div class="alert alert-info" role="alert">
+				<strong>Sorry!</strong> There are no polls at the moment.
+			</div>
+		{{else}}
+			{{#each poll in polls}}
+			{{> showpoll poll=poll}}
+			{{/each}}
+		{{/if}}
 	{{/if}}
 </template>
 
@@ -65,14 +77,47 @@
     <div class="col-md-5">
        <img src="{{post.url}}" width="100%" alt="{{post.title}}">
     </div>
-		{{#if canDelete}}
+		{{#if canDeletePost}}
     <div class="col-md-1">
-       <button class="btn btn-danger">Delete</button>
+       <button class="btn btn-danger" id="delpost-js">Delete</button>
     </div>
 		{{/if}}
   </div>
 </template>
 
 <template name="showpoll">
-	<h1><a id="{{post.title}}">{{post.title}}</a></h1>
+	<h1><a id="{{poll.title}}">{{poll.title}}</a></h1>
+	<div class="row" style="background-color:#eee; padding:20px; margin-bottom:0.5in">
+		<div class="row">
+			<div class="col-md-5">
+	       <strong>{{poll.topic}}:</strong><em>{{poll.desc}}</em>
+	    </div>
+	    <div class="col-md-4">
+	       <strong>Poll Ends At:</strong><em>{{poll.endTime}}</em>
+	    </div>
+		</div>
+		<div class="row">
+			{{#if currentUser}}
+			<div class="btn-group">
+				{{#if canVote}}
+					<label class="btn">
+						 <button class="btn btn-success" id="pollvoteyes-js">Yes</button>
+					</label>
+					<label class="btn">
+						 <button class="btn btn-warning" id="pollvoteno-js">No</button>
+					</label>
+				{{/if}}
+				{{#if canDeletePoll}}
+				<label class="btn">
+					 <button class="btn btn-danger" id="delpoll-js">Delete</button>
+				</label>
+				{{/if}}
+			</div>
+			{{else}}
+				<div class="alert alert-warning" role="alert">
+					<strong>Sorry!</strong> You must be logged in to vote in polls.
+				</div>
+			{{/if}}
+		</div>
+	</div>
 </template>

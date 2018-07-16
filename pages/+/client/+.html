@@ -53,7 +53,6 @@
           <input type="text" class="form-control" id="roominvite-js" placeholder="Invite a Friend">
           <input type="text" class="form-control" id="roominvite-js" placeholder="Invite a Friend">
           <input type="text" class="form-control" id="roominvite-js" placeholder="Invite a Friend">
-          <small class="form-text text-muted">Ctrl+Click to select multiple followers!</small>
         </div>
         <button class="btn btn-info btn-large" id="roomsubmit-js">Create Room</button>
     </fieldset>
@@ -78,10 +77,12 @@
           <div class="form-group">
             <input type="text" class="form-control" id="polltopic-js" placeholder="Enter topic">
           </div>
-          How long do you want your poll to be open?
+          When do you want to your poll to end?
           <div class="form-group">
-            <input type="text" class="form-control" id="polllength-js" placeholder="Enter poll time length">
+            <input type="time" class="form-control" id="pollendtime-js">
           </div>
+          <small class="form-text text-muted">When you have selected one section of the time, you can also type instead of using the up and down arrows.</small>
+          <br>
           <button class="btn btn-info btn-large" id="pollsubmit-js">Create Poll</button>
     </fieldset>
 

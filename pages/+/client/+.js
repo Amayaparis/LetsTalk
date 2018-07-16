@@ -55,7 +55,8 @@ Template.chat.events({
       let prof = Profiles.findOne({owner:Meteor.userId()});
       prof.points += NEW_POST_POINTS;
       Profiles.update(prof._id,prof);
-      Router.route(post.link);
+      if (!Router.routes[post.link])
+       Router.route(post.link);
       Router.go('home');
     }
   },
@@ -92,8 +93,8 @@ Template.chat.events({
       const theTitle = $("#polltitle-js").val();
       const theDesc = $("#polldesc-js").val();
       const theTopic = $("#polltopic-js").val();
-      const theLength = $("#polllength-js").val();
-      if (theTitle == "" || theDesc == "" || theTopic == "" || theLength == "") {
+      const theEndTime = $("#pollendtime-js").val();
+      if (theTitle == "" || theDesc == "" || theTopic == "" || theEndTime == "") {
         Session.set(BAD_POLL_INPUT_ID,true);
       }
       else {
@@ -102,8 +103,10 @@ Template.chat.events({
         {title:theTitle,
          desc:theDesc,
          topic:theTopic,
-         length:theLength,
+         endTime:theEndTime,
          link:"home#"+theTitle,
+         votersNo:[],
+         votersYes:[],
          createdAt:new Date(),
          createdBy:Meteor.userId()
        };
@@ -112,7 +115,9 @@ Template.chat.events({
        let prof = Profiles.findOne({owner:Meteor.userId()});
        prof.points += NEW_POLL_POINTS;
        Profiles.update(prof._id,prof);
-        Router.go('profilepage')
+       if (!Router.routes[poll.link])
+        Router.route(poll.link);
+       Router.go('profilepage')
       }
     }
 });
