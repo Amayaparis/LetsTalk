@@ -41,29 +41,30 @@ Template.userList.events({
 
 Template.userDisplay.helpers({
   canFriend() {
-    if (!Meteor.userId())
-      return false;
     let prof=Profiles.findOne({owner:Meteor.userId()});
-    console.log("can friend="+prof.friends.indexOf(this.user._id) == -1 && this.user.owner != Meteor.userId());
-    return prof.friends.indexOf(this.user._id) == -1 && this.user.owner != Meteor.userId() && prof.reportedUsers.indexOf(this.user._id) == -1;
+    if (!prof)
+      return false;
+    console.log("can friend="+prof.friends.indexOf(this.user._id) == -1 && this.user.owner != Meteor.userId() && prof.reportedUsers.indexOf(this.user._id) == -1 && this.user.reportedUsers.indexOf(prof._id) == -1);
+    return prof.friends.indexOf(this.user._id) == -1 && this.user.owner != Meteor.userId() && prof.reportedUsers.indexOf(this.user._id) == -1 && this.user.reportedUsers.indexOf(prof._id) == -1;
   },
   canUnFriend() {
-    if (!Meteor.userId())
-      return false;
     let prof=Profiles.findOne({owner:Meteor.userId()});
+    if (!prof)
+      return false;
     console.log("can unfriend="+prof.friends.indexOf(this.user._id) > -1);
     return prof.friends.indexOf(this.user._id) > -1;
   },
   canReport() {
-    if (!Meteor.userId())
-      return false;
     let prof=Profiles.findOne({owner:Meteor.userId()});
+    if (!prof)
+      return false;
     console.log("can report="+prof.reportedUsers.indexOf(this.user._id)==-1 && this.user.owner != Meteor.userId());
     return prof.reportedUsers.indexOf(this.user._id) == -1 && this.user.owner != Meteor.userId();
   },
   reported() {
-    if (!Meteor.userId())
+    let prof = Profiles.findOne({owner:Meteor.userId()});
+    if (!prof)
       return false;
-    return Meteor.userId() != this.user._id && Profiles.findOne({owner:Meteor.userId()}).reportedUsers.indexOf(this.user._id) >= 0;
+    return Meteor.userId() != this.user._id && prof.reportedUsers.indexOf(this.user._id) >= 0;
   }
 })

@@ -48,7 +48,7 @@ Template.profilepage.helpers({
       console.log("found a matching profile");
       return theProfile;
     }
-   }
+  },
 })
 
 Template.myprofile.events({

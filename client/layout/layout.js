@@ -1,5 +1,6 @@
 const PREV_ID = "prevPage";
 Session.set(PREV_ID,"profilepage");
+const MAX_REPORTS = 3;
 
 Template.layout.helpers({
   loginCheck() {
@@ -21,5 +22,18 @@ Template.layout.helpers({
     else {
       console.log("User is not logged in.");
     }
-  }
+  },
+  canBan() {
+    let target = Profiles.findOne({owner:Meteor.userId()});
+    if (!target)
+      return false;
+    console.log("CAN BAN="+target.reports>=MAX_REPORTS);
+    return target.reports>=MAX_REPORTS;
+  },
+  ban() {
+    console.log("BANNING REMOVING PROFILE..");
+    let bannable = Profiles.findOne({owner:Meteor.userId()});
+    alert("Your account received too many reports and your profile has been removed.");
+    Profiles.remove(bannable._id);
+  },
 })
