@@ -19,25 +19,26 @@ messages go here
   {{msg.name}}: {{msg.msg}}
   <hr><br>
  {{/each}}
+ </div>
+
+    {{#if currentUser}}
+    <div>
+    <input name="usermsg" type="text" id="usermsg" size="63" />
+    <input name="submitmsg" type="submit"  id="submitmsg" value="Send"/>
     </div>
+    {{/if}}
 
 
-            <input name="usermsg" type="text" id="usermsg" size="63" />
-            <input name="submitmsg" type="submit"  id="submitmsg" value="Send"/>
-
-    </div>
-
-
-    <div id="loginform">
+    <!-- <div id="loginform">
 
         <p>Please enter your name to continue:</p>
         <label for="name">Name:</label>
         <input type="text" name="name" id="name" />
-        <input type="submit" name="enter" id="enter" value="Enter" />
+        <input type="submit" name="enter" id="enter" value="Enter" />-->
 
     </div>
 
-}
+
 
 
 
