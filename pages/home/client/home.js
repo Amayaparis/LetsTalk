@@ -63,8 +63,22 @@ Template.showpoll.helpers({
     console.log("user has voted="+userHasVoted);
     console.log(`poll data=${JSON.stringify(this.poll)}`);
     let currTime = new Date();
-    console.log(this.poll.endTime);
+    // Please pay attention to the month (parts[1]); JavaScript counts months from 0:
+    // January - 0, February - 1, etc.
+    let endTime = new Date(currTime.getFullYear(),currTime.getMonth(),currTime.getDate(),this.poll.endTime.substring(0,2),this.poll.endTime.substring(3,5));
+    console.log(endTime);
+    console.log(currTime.getHours()+":"+currTime.getMinutes());
     let isPollOpen = true;
+    if (currTime.getHours()<endTime.getHours()) {
+      isPollOpen = true;
+    }
+    else if (currTime.getHours()==endTime.getHours()) {
+      isPollOpen = currTime.getMinutes()<endTime.getMinutes();
+    }
+    else {
+      isPollOpen = false;
+    }
+    console.log(isPollOpen);
     let userNotCreator = this.poll.createdBy != Meteor.userId();
     return isPollOpen && !userHasVoted && userNotCreator;
   }

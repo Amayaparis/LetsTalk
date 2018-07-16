@@ -29,7 +29,6 @@ Template.chat.helpers({
   }
 })
 
-
 Template.chat.events({
   "click #postsubmit-js"(event,instance){
     event.preventDefault();
@@ -53,6 +52,8 @@ Template.chat.events({
      console.log(`just created ${JSON.stringify(post)}`);
       Posts.insert(post);
       let prof = Profiles.findOne({owner:Meteor.userId()});
+      if (!prof)
+        prof=getProfile();
       prof.points += NEW_POST_POINTS;
       Profiles.update(prof._id,prof);
       if (!Router.routes[post.link])
@@ -81,6 +82,8 @@ Template.chat.events({
        Chats.insert(ChatRoom);
        console.log(`just created ${JSON.stringify(ChatRoom)}`)
        let prof = Profiles.findOne({owner:Meteor.userId()});
+       if (!prof)
+        prof=getProfile();
        prof.points += NEW_CHAT_POINTS;
        Profiles.update(prof._id,prof);
         Router.go('profilepage')
