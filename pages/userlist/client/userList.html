@@ -11,7 +11,7 @@
 <template name="userDisplay">
   <h3>{{user.name}}</h3>
   <div class="row" style="background-color:#eee; padding:20px; margin-bottom:0.5in">
-    <div class="col-md-11">
+    <div class="col-md-9">
        <em>{{user.bio}}</em>
     </div>
 		{{#if canFriend}}
@@ -21,8 +21,19 @@
 		{{/if}}
     {{#if canUnFriend}}
     <div class="col-md-1">
-       <button class="btn btn-danger" id="unfriend-js">Unfriend</button>
+       <button class="btn btn-warning" id="unfriend-js">Unfriend</button>
     </div>
+    {{/if}}
+    {{#if canReport}}
+    <div class="col-md-1">
+      <button class="btn btn-danger" id="report-js">Report</button>
+    </div>
+    {{else}}
+      {{#if reported}}
+        <div class="col-md-1">
+          <button class="btn btn-danger" disabled>Reported</button>
+        </div>
+      {{/if}}
     {{/if}}
   </div>
 </template>
