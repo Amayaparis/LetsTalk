@@ -52,8 +52,6 @@ Template.chat.events({
      console.log(`just created ${JSON.stringify(post)}`);
       Posts.insert(post);
       let prof = Profiles.findOne({owner:Meteor.userId()});
-      if (!prof)
-        prof=getProfile();
       prof.points += NEW_POST_POINTS;
       Profiles.update(prof._id,prof);
       if (!Router.routes[post.link])
