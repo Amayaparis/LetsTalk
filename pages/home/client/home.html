@@ -40,6 +40,7 @@
 	</div>
 </div>
 	{{#if isPostsClicked}}
+		{{disableChatDisplay}}
 		{{#if noPosts}}
 			<div class="alert alert-info" role="alert">
 				<strong>Sorry!</strong> There are no posts at the moment.
@@ -51,6 +52,7 @@
 		{{/if}}
 	{{/if}}
 	{{#if isRoomsClicked}}
+		{{enableChatDisplay}}
 		{{#if noRooms}}
 			<div class="alert alert-info" role="alert">
 				<strong>Sorry!</strong> There are no chat rooms at the moment.
@@ -62,6 +64,7 @@
 		{{/if}}
 	{{/if}}
 	{{#if isPollsClicked}}
+		{{disableChatDisplay}}
 		{{#if noPolls}}
 			<div class="alert alert-info" role="alert">
 				<strong>Sorry!</strong> There are no polls at the moment.
@@ -92,7 +95,7 @@
 </template>
 
 <template name="showroom">
-	<h1><a href="{{room.link}}">{{room.title}}</a></h1>
+	<h1><a href="/chats/{{room._id}}">{{room.title}}</a></h1>
 	<div class="row" style="background-color:#eee; padding:20px; margin-bottom:0.5in">
 		<div class="col-md-11">
 			 <em>{{room.desc}}</em>

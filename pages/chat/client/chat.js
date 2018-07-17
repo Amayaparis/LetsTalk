@@ -1,6 +1,6 @@
 Template.chatroom.helpers({
   messages(){
-    return ChatMessages.find({chatroom:this._id},{sort:{when:1}})
+    return ChatMessages.find({chatroom:this._id},{sort:{when:1}});
   }
 
 })
@@ -12,9 +12,7 @@ Template.chatroom.events({
     const title = instance.$("#title").html()
     console.log("name is "+name)
     console.log("msg is "+msg)
-    console.log("title is "+title)
-    console.log(this._id)
-    console.dir(this)
+    console.log("chatroom id="+this._id)
     const newmsg = {
       name:name,
       msg:msg,

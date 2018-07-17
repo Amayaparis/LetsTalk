@@ -1,26 +1,31 @@
 const PREV_ID = "prevPage";
 Session.set(PREV_ID,"profilepage");
 const MAX_REPORTS = 3;
+ENABLE_CHAT_DISPLAY_ID = "enableChatDisplay";
+Session.set(ENABLE_CHAT_DISPLAY_ID,false);
 
 Template.layout.helpers({
   loginCheck() {
-    if (Meteor.userId()) {
-      if (!Profiles.findOne({owner:Meteor.userId()})) {
-        if (Router.current().route.getName() != "profilepage") {
-          Session.set(PREV_ID,Router.current().route.getName());
-          console.log("current route="+Router.current().route.getName());
+    console.log("chat display enabled="+Session.get(ENABLE_CHAT_DISPLAY_ID));
+    if (!Session.get(ENABLE_CHAT_DISPLAY_ID)) {
+      if (Meteor.userId()) {
+        if (!Profiles.findOne({owner:Meteor.userId()})) {
+          if (Router.current().route.getName() != "profilepage") {
+            Session.set(PREV_ID,Router.current().route.getName());
+            console.log("current route="+Router.current().route.getName());
+          }
+          Router.go("profilepage");
+          console.log("User is logged in with no profile.");
         }
-        Router.go("profilepage");
-        console.log("User is logged in with no profile.");
+        else {
+          console.log("going to:"+Session.get(PREV_ID));
+          Router.go(Session.get(PREV_ID));
+          console.log("User is logged in with a profile.");
+        }
       }
       else {
-        console.log("going to:"+Session.get(PREV_ID));
-        Router.go(Session.get(PREV_ID));
-        console.log("User is logged in with a profile.");
+        console.log("User is not logged in.");
       }
-    }
-    else {
-      console.log("User is not logged in.");
     }
   },
   canBan() {

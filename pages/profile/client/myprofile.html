@@ -132,6 +132,7 @@
       </thead>
       <tbody>
         {{#if isPicsClicked}}
+          {{disableChatDisplay}}
           {{#if isRecentsEmpty}}
             <div class="alert alert-info" role="alert">
                <strong>Sorry!</strong> It looks like {{me.name}} has not posted any {{getClickedRecent}}.
@@ -145,20 +146,22 @@
           {{/if}}
         {{else}}
           {{#if isChatsClicked}}
+            {{enableChatDisplay}}
             {{#if noChats}}
             <div class="alert alert-info" role="alert">
                <strong>Sorry!</strong> It looks like {{me.name}} has not created any Chat Rooms.
             </div>
             {{else}}
-              {{#each chatRooms}}
+              {{#each recent in getRecentCollection}}
               <tr>
                 <td>
-                  <a href="{{link}}">{{title}}</a>
+                  <a href="/chats/{{recent._id}}">{{recent.title}}</a>
                 </td>
               </tr>
               {{/each}}
             {{/if}}
           {{else}}
+          {{disableChatDisplay}}
             {{#if isRecentsEmpty}}
               <div class="alert alert-info" role="alert">
                  <strong>Sorry!</strong> It looks like {{me.name}} has not created any {{getClickedRecent}}.
