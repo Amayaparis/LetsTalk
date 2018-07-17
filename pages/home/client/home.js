@@ -32,6 +32,12 @@ Template.home.helpers({
   isRoomsClicked() {
     console.log("is rooms="+Session.get(APP_ACTIVITY_CLICKED_ID));
     return Session.get(APP_ACTIVITY_CLICKED_ID) == "Chats";
+  },
+  enableChatDisplay() {
+    Session.set(ENABLE_CHAT_DISPLAY_ID,true);
+  },
+  disableChatDisplay() {
+    Session.set(ENABLE_CHAT_DISPLAY_ID,false);
   }
 })
 

@@ -78,16 +78,13 @@ Template.chat.events({
          invites:theInvite,
          createdAt:new Date(),
          createdBy:Meteor.userId(),
-         link:"/chats/"+theTitle
        };
        Chats.insert(ChatRoom);
        console.log(`just created ${JSON.stringify(ChatRoom)}`)
        let prof = Profiles.findOne({owner:Meteor.userId()});
        prof.points += NEW_CHAT_POINTS;
        Profiles.update(prof._id,prof);
-       if (!Router.routes[ChatRoom.link])
-        Router.route(ChatRoom.link);
-       Router.go('profilepage')
+       Router.go("home");
       }
     },
 
