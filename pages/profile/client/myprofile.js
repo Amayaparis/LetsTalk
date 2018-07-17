@@ -61,11 +61,10 @@ Template.myprofile.events({
     console.log('read bio='+bio);
     const iSrc = instance.$('#imgSelect-js').val();
     console.log('read img src='+iSrc);
-    let prof = Profiles.findOne({name:name});
     if (name == "") {
       Session.set(NAME_EMPTY_ID,true);
     }
-    else if (prof._id != this.me._id) {
+    else if (Profiles.find({name:name}).count() > 1) {
       Session.set(NAME_EXISTS_ID,true);
     }
     else {
@@ -139,10 +138,10 @@ Template.myprofile.helpers({
   noChats() {
     return Chats.find().count() == 0;
   },
-  enableChatDisplay() {
-    Session.set(ENABLE_CHAT_DISPLAY_ID,true);
-  },
-  disableChatDisplay() {
-    Session.set(ENABLE_CHAT_DISPLAY_ID,false);
-  }
+  // enableChatDisplay() {
+  //   Session.set(ENABLE_CHAT_DISPLAY_ID,true);
+  // },
+  // disableChatDisplay() {
+  //   Session.set(ENABLE_CHAT_DISPLAY_ID,false);
+  // }
 })

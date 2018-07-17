@@ -132,7 +132,7 @@
       </thead>
       <tbody>
         {{#if isPicsClicked}}
-          {{disableChatDisplay}}
+          <!-- {{disableChatDisplay}} -->
           {{#if isRecentsEmpty}}
             <div class="alert alert-info" role="alert">
                <strong>Sorry!</strong> It looks like {{me.name}} has not posted any {{getClickedRecent}}.
@@ -146,7 +146,7 @@
           {{/if}}
         {{else}}
           {{#if isChatsClicked}}
-            {{enableChatDisplay}}
+            <!-- {{enableChatDisplay}} -->
             {{#if noChats}}
             <div class="alert alert-info" role="alert">
                <strong>Sorry!</strong> It looks like {{me.name}} has not created any Chat Rooms.
@@ -161,7 +161,7 @@
               {{/each}}
             {{/if}}
           {{else}}
-          {{disableChatDisplay}}
+          <!-- {{disableChatDisplay}} -->
             {{#if isRecentsEmpty}}
               <div class="alert alert-info" role="alert">
                  <strong>Sorry!</strong> It looks like {{me.name}} has not created any {{getClickedRecent}}.
