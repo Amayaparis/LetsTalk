@@ -35,7 +35,7 @@ Template.profilepage.helpers({
   getProfile(){
     var theProfile = Profiles.findOne({owner:Meteor.userId()});
     if (!theProfile) {
-      theProfile = {name:"",dob:"",bio:"",friends:[],reports:0,reportedUsers:[],points:0,owner:Meteor.userId()};
+      theProfile = {name:"",dob:"",bio:"",friends:[],imgSrc:"",reports:0,reportedUsers:[],points:0,owner:Meteor.userId()};
       var k = Profiles.find().count();
       while (Profiles.findOne({name:"Anonymous"+k})) {
         k++;
@@ -59,10 +59,13 @@ Template.myprofile.events({
     console.log('read dob='+dob);
     const bio = instance.$('#bio-js').val();
     console.log('read bio='+bio);
+    const iSrc = instance.$('#imgSelect-js').val();
+    console.log('read img src='+iSrc);
+    let prof = Profiles.findOne({name:name});
     if (name == "") {
       Session.set(NAME_EMPTY_ID,true);
     }
-    else if (Profiles.findOne({name:name}) != undefined) {
+    else if (prof._id != this.me._id) {
       Session.set(NAME_EXISTS_ID,true);
     }
     else {
@@ -72,6 +75,7 @@ Template.myprofile.events({
       this.me.name = name;
       this.me.dob = dob;
       this.me.bio = bio;
+      this.me.imgSrc = iSrc;
       this.me.friends = prof.friends;
       this.me.reports = prof.reports;
       this.me.reportedUsers = prof.reportedUsers;
